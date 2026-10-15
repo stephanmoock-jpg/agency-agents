@@ -12,6 +12,8 @@ final class AppModel {
     private let context: ModelContext
     private(set) var summary: RankSummary
     private(set) var lastOutcome: LogOutcome?
+    /// Zähler für Planänderungen: Views lesen ihn, damit sie bei Plan-Änderungen neu zeichnen.
+    private(set) var planRevision = 0
     var hasOnboarded: Bool
 
     struct LogOutcome: Identifiable, Equatable {
@@ -156,6 +158,7 @@ final class AppModel {
             context.insert(pi)
         }
         save()
+        planRevision += 1
         return plan
     }
 
@@ -184,6 +187,7 @@ final class AppModel {
         }
         let allDone = !plan.items.isEmpty && plan.items.allSatisfy { $0.doneAt != nil }
         plan.status = allDone ? "done" : "active"
+        planRevision += 1
     }
 
     // MARK: Rang
@@ -246,6 +250,7 @@ final class AppModel {
         try? context.delete(model: PlanItem.self)
         try? context.delete(model: Plan.self)
         save()
+        planRevision += 1
         hasOnboarded = false
         UserDefaults.standard.set(false, forKey: "hasOnboarded")
         lastOutcome = nil

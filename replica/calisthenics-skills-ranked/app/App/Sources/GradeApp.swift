@@ -11,6 +11,7 @@ struct GradeApp: App {
     init() {
         let schema = Schema([SetLog.self, AssessmentAnswer.self, RankSnapshot.self, Plan.self, PlanItem.self])
         let inMemory = ProcessInfo.processInfo.arguments.contains("-uiTesting")
+            || ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil   // Unit-Test-Host
         do {
             container = try ModelContainer(for: schema, configurations: ModelConfiguration(isStoredInMemoryOnly: inMemory))
         } catch {

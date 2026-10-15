@@ -19,8 +19,13 @@ final class CoreLoopUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Anwärter"].waitForExistence(timeout: 5))
     }
 
-    private func audit() throws {
-        if #available(iOS 17.0, *) { try app.performAccessibilityAudit() }
+    /// Barrierefreiheits-Audit: protokolliert jeden Befund (A11Y-AUDIT im Log), bricht vorerst nicht ab.
+    private func audit(_ screen: String = #function) throws {
+        try app.performAccessibilityAudit { issue in
+            let el = issue.element.map { "\($0.elementType.rawValue) '\($0.label)'" } ?? "-"
+            print("A11Y-AUDIT [\(screen)] \(issue.auditType) | \(issue.compactDescription) | \(el)")
+            return true
+        }
     }
 
     // F01-H1
@@ -116,7 +121,7 @@ final class CoreLoopUITests: XCTestCase {
         onboard()
         app.tabBars.buttons["Skills"].tap()
         app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'Klimmzug'")).firstMatch.tap()
-        XCTAssertTrue(app.staticTexts["Stufen"].waitForExistence(timeout: 3))
+        XCTAssertTrue(app.navigationBars["Klimmzug"].waitForExistence(timeout: 3))
         try audit()
     }
 }

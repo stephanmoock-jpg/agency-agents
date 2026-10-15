@@ -43,7 +43,8 @@ jobs:
           set -o pipefail
           xcodebuild build-for-testing -project GradeApp.xcodeproj -scheme GradeApp \
             -destination "id=${{ steps.sim.outputs.udid }}" -derivedDataPath DD \
-            CODE_SIGNING_ALLOWED=NO 2>&1 | tee build.log | grep -E "error:|\*\* BUILD" || true
+            CODE_SIGNING_ALLOWED=NO > build.log 2>&1 || true
+          grep -E "error:|warning: .*\.swift|\*\* (TEST )?BUILD" build.log | sort -u | head -80 || true
           grep -q "\*\* TEST BUILD SUCCEEDED \*\*" build.log
 
       - name: Unit-Tests (AppModel)
@@ -52,7 +53,8 @@ jobs:
           set -o pipefail
           xcodebuild test-without-building -project GradeApp.xcodeproj -scheme GradeApp \
             -destination "id=${{ steps.sim.outputs.udid }}" -derivedDataPath DD \
-            -only-testing:GradeAppTests 2>&1 | tee unit.log | grep -E "error:|Test Case .*(passed|failed)|\*\* TEST" || true
+            -only-testing:GradeAppTests > unit.log 2>&1 || true
+          grep -E "error:|Test Case .*(passed|failed)|\*\* TEST|Fatal|crash" unit.log | grep -v "CoreData" || true
           grep -q "\*\* TEST EXECUTE SUCCEEDED \*\*" unit.log
 
       - name: UI-Tests
@@ -61,7 +63,8 @@ jobs:
           set -o pipefail
           xcodebuild test-without-building -project GradeApp.xcodeproj -scheme GradeApp \
             -destination "id=${{ steps.sim.outputs.udid }}" -derivedDataPath DD \
-            -only-testing:GradeAppUITests 2>&1 | tee ui.log | grep -E "error:|Test Case .*(passed|failed)|\*\* TEST" || true
+            -only-testing:GradeAppUITests > ui.log 2>&1 || true
+          grep -E "error:|Test Case .*(passed|failed)|\*\* TEST|A11Y-AUDIT" ui.log | grep -v "CoreData" || true
           grep -q "\*\* TEST EXECUTE SUCCEEDED \*\*" ui.log
 
       - name: Screenshots S01 und S05 (Simulator)

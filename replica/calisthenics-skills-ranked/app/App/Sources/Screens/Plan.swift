@@ -16,7 +16,7 @@ struct PlanView: View {
     }
 
     @ViewBuilder private var content: some View {
-        let _ = model.summary            // beobachten: nach jedem Log neu zeichnen
+        let _ = (model.summary, model.planRevision)   // beobachten: nach Log- und Plan-Änderungen neu zeichnen
         if let plan = model.currentPlan() {
             List {
                 Section {
