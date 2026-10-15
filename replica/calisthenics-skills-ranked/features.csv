@@ -1,0 +1,26 @@
+feature,area,priority,original,clone,notes
+Einstufungstest beim Erststart,onboarding,must,yes,no,
+Gesamtgrad in 9 Stufen,ranking,must,yes,no,eigene Gradnamen
+Power Level aus Rang Stufen Konstanz Volumen,ranking,must,yes,no,Formel selbst entwerfen
+Grad je Muskelregion (6),ranking,must,yes,no,
+Schwächste Region hervorheben,ranking,must,yes,no,
+38 Skill-Linien mit Stufenketten,content,must,yes,no,eigene Progressionen
+Satz loggen (Wdh. oder Sekunden),logging,must,yes,no,
+Stufe geschafft und Grad-Aufstieg Feedback,ranking,must,yes,no,
+Lokale Speicherung ohne Account,platform,must,yes,no,SwiftData/Core Data
+Abo weekly/yearly mit Trial,payments,must,yes,no,StoreKit 2
+Käufe wiederherstellen,payments,must,yes,no,
+Grad je Skill-Linie,ranking,should,yes,no,
+Trainingsplan gegen schwächste Region,plan,should,yes,no,
+Rang-Verlauf Chart,tracking,should,yes,no,
+Hold-Timer für statische Stufen,logging,should,unknown,no,inferiert
+Satz bearbeiten/löschen,logging,should,unknown,no,inferiert
+Einheiten und Einstellungen,platform,should,unknown,no,
+iCloud-Sync zwischen Geräten,platform,could,no,no,Differenzierung; Original nur lokal
+Daten-Export CSV,platform,could,unknown,no,
+Widgets mit Grad/Power,platform,could,unknown,no,
+Apple Health Sync,integrations,could,unknown,no,
+Android-Version,platform,could,no,no,Original nur iPhone
+Name Ranked und Gradnamen,brand,skip,yes,skip,Marke/Texte des Originals
+Konkrete Linien- und Stufentexte des Originals,content,skip,yes,skip,eigene Inhalte schreiben
+Original-Bewertungsformel,ranking,skip,yes,skip,nicht öffentlich; eigene Formel
