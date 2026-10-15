@@ -80,3 +80,17 @@ Ziel: App nur für den Nutzer selbst, Test auf dem eigenen iPhone. Anleitung: `a
 Kalibrierung nach Modelländerung: „ausgeglichen“ (2 Linien je Region auf mittlerem Niveau) = Grad 3 statt 4, weil die dritte Top-Linie je Region jetzt fehlt. Wer 3 Linien je Region trainiert, steigt schneller. Beim Selbsttest beobachten.
 
 Geprüft: `grading_ref.py --check` (38 Linien, 0 Fehler, 11 Eigenschaftstests, 10 Vektoren), `edge_tests.py` 20/20. Swift weiterhin nicht kompiliert.
+
+## Runde 3 (2026-10-15): Gebaut und getestet auf macOS (GitHub Actions)
+
+Workflow `.github/workflows/kreide-ios.yml` (macos-15, Xcode, iPhone-17-Pro-Simulator). Läuft bei jedem Push auf den Branch.
+
+| Run | Ergebnis | Fix |
+| --- | --- | --- |
+| 38778980397 | App kompiliert beim ersten Versuch; AppModel-Tests abgestürzt; 5 von 7 UI-Tests rot | Plan-Ansicht zeichnete nach „Plan erstellen“ nicht neu (`planRevision`); Test-Host nutzt In-Memory-Store; Logs gefiltert |
+| 38782846377 | UI-Tests 8/8 grün; AppModel-Tests stürzten weiter ab | Test hielt `ModelContainer` nicht fest → Context ungültig |
+| 38787455378 | **alles grün**: Python-Referenz, GradingKit 4/4, App-Build, AppModel 10/10, UI 8/8 | — |
+
+Barrierefreiheits-Audit (protokolliert, nicht blockierend), Rest nach Run 3: „Text clipped“ bei „12 Fragen, etwa zwei Minuten.“ und „Wiederholungen“, Kontrast bei „Letzte Sätze“ und „Andere Stufe loggen“ (Audit-Fehlalarm vermutet: Werte laut Tokens > 4,5 : 1), Dynamic Type beim System-Button „Abbrechen“. Vorher behoben: abgeschnittene Mehrzeilentexte, Kontrast der Abschnittsüberschriften, zu kleine Tippfläche des Fortschrittsbalkens.
+
+Nicht automatisch geprüft: echtes iPhone, Dark Mode per Auge, Haptik, VoiceOver von Hand, Verhalten über mehrere Tage (Konstanz, Tagessnapshots).
