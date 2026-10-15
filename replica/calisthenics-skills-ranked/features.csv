@@ -1,0 +1,26 @@
+feature,area,priority,original,clone,notes
+Einstufungstest beim Erststart,onboarding,must,yes,yes,"gebaut, CI grün (Run 38787455378); S01-S03; 12 Fragen (2 Kernlinien je Region)"
+Gesamtgrad in 9 Stufen,ranking,must,yes,yes,"eigene Gradnamen; gebaut, CI grün (Run 38787455378); Logik per Python-Referenz geprüft"
+Power Level aus Rang Stufen Konstanz Volumen,ranking,must,yes,yes,"Formel selbst entwerfen; gebaut, CI grün (Run 38787455378); Logik per Python-Referenz geprüft"
+Grad je Muskelregion (6),ranking,must,yes,yes,"gebaut, CI grün (Run 38787455378); PRO"
+Schwächste Region hervorheben,ranking,must,yes,yes,"gebaut, CI grün (Run 38787455378); Logik geprüft"
+38 Skill-Linien mit Stufenketten,content,must,yes,yes,"eigene Progressionen; 38 Linien, 199 Stufen im Katalog (v2); Schwierigkeit geschätzt; Code nicht kompiliert"
+Satz loggen (Wdh. oder Sekunden),logging,must,yes,yes,"gebaut, CI grün (Run 38787455378); S08"
+Stufe geschafft und Grad-Aufstieg Feedback,ranking,must,yes,yes,"gebaut, CI grün (Run 38787455378); Toast + LevelUpSheet"
+Lokale Speicherung ohne Account,platform,must,yes,yes,"SwiftData/Core Data; gebaut, CI grün (Run 38787455378); SwiftData"
+Abo weekly/yearly mit Trial,payments,must,yes,partial,"StoreKit 2; Code geschrieben, nicht kompiliert; nur StoreKit-Testkonfiguration, App Store Connect fehlt; im PERSONAL-Build abgeschaltet (alles frei)"
+Käufe wiederherstellen,payments,must,yes,partial,"Code geschrieben, nicht kompiliert; im PERSONAL-Build abgeschaltet (alles frei)"
+Grad je Skill-Linie,ranking,should,yes,yes,"gebaut, CI grün (Run 38787455378)"
+Trainingsplan gegen schwächste Region,plan,should,yes,yes,"gebaut, CI grün (Run 38787455378); Planer per Python-Referenz geprüft"
+Rang-Verlauf Chart,tracking,should,yes,yes,"gebaut, CI grün (Run 38787455378); Swift Charts"
+Hold-Timer für statische Stufen,logging,should,unknown,yes,"inferiert; gebaut, CI grün (Run 38787455378)"
+Satz bearbeiten/löschen,logging,should,unknown,yes,"inferiert; gebaut, CI grün (Run 38787455378); Swipe + Undo-Toast"
+Einheiten und Einstellungen,platform,should,unknown,yes,"gebaut, CI grün (Run 38787455378); keine Einheiten nötig (Wdh./s)"
+iCloud-Sync zwischen Geräten,platform,could,no,no,Differenzierung; Original nur lokal
+Daten-Export CSV,platform,could,unknown,yes,"gebaut, CI grün (Run 38787455378)"
+Widgets mit Grad/Power,platform,could,unknown,no,
+Apple Health Sync,integrations,could,unknown,no,
+Android-Version,platform,could,no,no,Original nur iPhone
+Name Ranked und Gradnamen,brand,skip,yes,skip,Marke/Texte des Originals
+Konkrete Linien- und Stufentexte des Originals,content,skip,yes,skip,eigene Inhalte schreiben
+Original-Bewertungsformel,ranking,skip,yes,skip,nicht öffentlich; eigene Formel

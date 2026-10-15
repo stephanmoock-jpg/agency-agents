@@ -1,0 +1,32 @@
+feature,area,priority,original,clone,notes
+Onboarding mit Ziel/Level/Equipment,onboarding,must,yes,no,
+Programm-Empfehlung nach Onboarding,onboarding,must,yes,no,
+Übungsdatenbank mit Video und Muskelgruppen,content,must,yes,no,original 700+; eigene Videos nötig
+Routinen-Bibliothek frei verfügbar,content,must,yes,no,original 500+
+Programm-Katalog mit Filtern,programs,must,yes,no,original 40+
+Programm-Detail mit Wochenplan,programs,must,yes,no,
+Geführter Workout-Player (Video Sätze Wdh. Hold),workout,must,yes,no,
+Rest-Timer,workout,must,yes,no,nicht explizit gelistet; im Player inferiert
+Session-Log und Kalender,tracking,must,yes,no,
+Adaptive Routinen mit Level-Test (EVO),adaptive,must,yes,no,Kern-PRO-Feature; Regeln selbst entwerfen
+Feedback nach Session passt nächste Session an,adaptive,must,yes,no,
+PRO-Abo monatlich/jährlich,payments,must,yes,no,StoreKit + Play Billing
+Abo wiederherstellen und verwalten,payments,must,yes,no,FAQ: Gerätewechsel
+Skill-Tutorials mit Progressionsstufen,skills,should,yes,no,Handstand Muscle-up Lever Planche Flag
+21-Tage-Challenges,challenges,should,yes,no,
+Custom Workout Builder,workout,should,yes,no,
+Muscle-Map in Statistik und Übung,tracking,should,yes,no,
+Erweiterte Metriken (PRO),tracking,should,yes,no,
+Achievements,engagement,should,yes,no,
+Warm-up und Stretching,workout,should,yes,no,FAQ-Eintrag
+Schwierigkeit manuell anpassen,adaptive,should,yes,no,FAQ-Eintrag
+Apple Health Sync,integrations,should,yes,no,
+Mehrsprachigkeit (inkl. DE),platform,should,yes,no,
+Apple Watch App,platform,could,yes,no,
+Web-SEO-Seiten pro Routine,marketing,could,yes,no,/smart/<slug>/<id>
+Blog/Artikel,marketing,could,yes,no,
+Google Fit / Health Connect Sync,integrations,could,unknown,no,nicht belegt
+Erinnerungen/Push,engagement,could,unknown,no,nicht belegt
+Original-Übungsvideos und Tutorials,content,skip,yes,skip,Eigentum von Calisteniapp S.L.
+Marke und Begriff EVO,brand,skip,yes,skip,Markenrecht; eigenen Namen wählen
+Community-Beiträge der Nutzer,content,skip,yes,skip,Netzwerk nicht klonbar
