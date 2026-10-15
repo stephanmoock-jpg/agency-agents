@@ -6,6 +6,7 @@ public struct GradingConfig: Sendable {
     public var overallGradeThresholds: [Double] = [0.05, 0.12, 0.20, 0.30, 0.42, 0.55, 0.70, 0.85]
     public var topK = 3
     public var topKFactor = 2.0
+    public var otherFactor = 0.25
     public var balanceBase = 0.7
     public var balanceWeight = 0.3
     public var consistencyDays = 14
@@ -77,7 +78,7 @@ public enum Grading {
                     .sorted { (ls[$0.id]!, -$0.sort) > (ls[$1.id]!, -$1.sort) }
                 var num = 0.0, den = 0.0
                 for (rank, l) in rl.enumerated() {
-                    let w = l.weight * (rank < cfg.topK ? cfg.topKFactor : 1)
+                    let w = l.weight * (rank < cfg.topK ? cfg.topKFactor : cfg.otherFactor)
                     num += w * ls[l.id]!; den += w
                 }
                 out[r.id] = den > 0 ? num / den : 0

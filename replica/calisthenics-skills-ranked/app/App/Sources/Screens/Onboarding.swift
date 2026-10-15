@@ -47,8 +47,9 @@ struct AssessmentView: View {
     @State private var index = 0
     @State private var answers: [String: Int] = [:]
 
+    /// Zwei Kernlinien je Region (12 Fragen). Weitere Linien stuft man in S07 über echte Sätze ein.
     private var lines: [SkillLine] {
-        model.catalog.regions.flatMap { model.catalog.lines(in: $0.id) }
+        model.catalog.regions.flatMap { model.catalog.lines(in: $0.id).prefix(2) }
     }
 
     var body: some View {

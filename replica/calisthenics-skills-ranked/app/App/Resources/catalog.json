@@ -1,115 +1,1574 @@
 {
-  "version": 1,
-  "renamed": {},
-  "regions": [
-    {"id": "push", "name": "Drücken", "sort": 1},
-    {"id": "pull", "name": "Ziehen", "sort": 2},
-    {"id": "core", "name": "Rumpf", "sort": 3},
-    {"id": "legs", "name": "Beine", "sort": 4},
-    {"id": "shoulders", "name": "Schultern", "sort": 5},
-    {"id": "grip", "name": "Griff", "sort": 6}
-  ],
-  "lines": [
-    {"id": "pushup", "region": "push", "name": "Liegestütz", "sort": 1, "weight": 1.0, "stages": [
-      {"name": "Wand-Liegestütz", "metric": "reps", "target": 20, "difficulty": 0.02},
-      {"name": "Erhöhter Liegestütz", "metric": "reps", "target": 15, "difficulty": 0.06},
-      {"name": "Knie-Liegestütz", "metric": "reps", "target": 15, "difficulty": 0.10},
-      {"name": "Liegestütz", "metric": "reps", "target": 10, "difficulty": 0.18},
-      {"name": "Liegestütz", "metric": "reps", "target": 25, "difficulty": 0.28},
-      {"name": "Diamant-Liegestütz", "metric": "reps", "target": 12, "difficulty": 0.36},
-      {"name": "Archer-Liegestütz je Seite", "metric": "reps", "target": 6, "difficulty": 0.52},
-      {"name": "Einarmiger Liegestütz je Seite", "metric": "reps", "target": 3, "difficulty": 0.75}
-    ]},
-    {"id": "dip", "region": "push", "name": "Dip", "sort": 2, "weight": 1.0, "stages": [
-      {"name": "Bank-Dip", "metric": "reps", "target": 15, "difficulty": 0.06},
-      {"name": "Stütz am Barren", "metric": "seconds", "target": 30, "difficulty": 0.12},
-      {"name": "Negativ-Dip (5 s ab)", "metric": "reps", "target": 6, "difficulty": 0.18},
-      {"name": "Dip", "metric": "reps", "target": 8, "difficulty": 0.30},
-      {"name": "Dip", "metric": "reps", "target": 20, "difficulty": 0.45},
-      {"name": "Ring-Dip", "metric": "reps", "target": 8, "difficulty": 0.62},
-      {"name": "Korean Dip", "metric": "reps", "target": 5, "difficulty": 0.78}
-    ]},
-    {"id": "pullup", "region": "pull", "name": "Klimmzug", "sort": 1, "weight": 1.0, "stages": [
-      {"name": "Aktives Hängen", "metric": "seconds", "target": 20, "difficulty": 0.05},
-      {"name": "Negativ-Klimmzug (5 s ab)", "metric": "reps", "target": 5, "difficulty": 0.14},
-      {"name": "Klimmzug", "metric": "reps", "target": 1, "difficulty": 0.22},
-      {"name": "Klimmzug", "metric": "reps", "target": 8, "difficulty": 0.34},
-      {"name": "Klimmzug", "metric": "reps", "target": 15, "difficulty": 0.48},
-      {"name": "Archer-Klimmzug je Seite", "metric": "reps", "target": 4, "difficulty": 0.64},
-      {"name": "Muscle-up", "metric": "reps", "target": 1, "difficulty": 0.72},
-      {"name": "Einarmiger Klimmzug", "metric": "reps", "target": 1, "difficulty": 0.92}
-    ]},
-    {"id": "row", "region": "pull", "name": "Rudern", "sort": 2, "weight": 1.0, "stages": [
-      {"name": "Steiles Rudern am Tisch/Ring", "metric": "reps", "target": 15, "difficulty": 0.04},
-      {"name": "Waagerechtes Rudern", "metric": "reps", "target": 12, "difficulty": 0.14},
-      {"name": "Rudern mit erhöhten Füßen", "metric": "reps", "target": 12, "difficulty": 0.26},
-      {"name": "Archer-Rudern je Seite", "metric": "reps", "target": 8, "difficulty": 0.40},
-      {"name": "Tuck Front Lever", "metric": "seconds", "target": 10, "difficulty": 0.50},
-      {"name": "Front Lever einbeinig", "metric": "seconds", "target": 8, "difficulty": 0.68},
-      {"name": "Front Lever", "metric": "seconds", "target": 5, "difficulty": 0.88}
-    ]},
-    {"id": "lsit", "region": "core", "name": "L-Sitz", "sort": 1, "weight": 1.0, "stages": [
-      {"name": "Stütz mit angezogenen Knien", "metric": "seconds", "target": 15, "difficulty": 0.08},
-      {"name": "Einbeiniger L-Sitz", "metric": "seconds", "target": 15, "difficulty": 0.18},
-      {"name": "L-Sitz", "metric": "seconds", "target": 10, "difficulty": 0.30},
-      {"name": "L-Sitz", "metric": "seconds", "target": 30, "difficulty": 0.44},
-      {"name": "V-Sitz-Ansatz", "metric": "seconds", "target": 5, "difficulty": 0.66},
-      {"name": "V-Sitz", "metric": "seconds", "target": 5, "difficulty": 0.85}
-    ]},
-    {"id": "legraise", "region": "core", "name": "Beinheben hängend", "sort": 2, "weight": 1.0, "stages": [
-      {"name": "Knieheben liegend", "metric": "reps", "target": 15, "difficulty": 0.03},
-      {"name": "Knieheben hängend", "metric": "reps", "target": 12, "difficulty": 0.12},
-      {"name": "Beinheben hängend bis 90°", "metric": "reps", "target": 10, "difficulty": 0.26},
-      {"name": "Zehen zur Stange", "metric": "reps", "target": 8, "difficulty": 0.42},
-      {"name": "Zehen zur Stange", "metric": "reps", "target": 15, "difficulty": 0.55},
-      {"name": "Dragon Flag negativ", "metric": "reps", "target": 5, "difficulty": 0.70}
-    ]},
-    {"id": "squat", "region": "legs", "name": "Kniebeuge", "sort": 1, "weight": 1.0, "stages": [
-      {"name": "Kniebeuge zur Box", "metric": "reps", "target": 15, "difficulty": 0.02},
-      {"name": "Kniebeuge", "metric": "reps", "target": 30, "difficulty": 0.08},
-      {"name": "Bulgarische Split-Kniebeuge je Seite", "metric": "reps", "target": 12, "difficulty": 0.18},
-      {"name": "Pistol zur Box je Seite", "metric": "reps", "target": 8, "difficulty": 0.30},
-      {"name": "Pistol Squat je Seite", "metric": "reps", "target": 3, "difficulty": 0.44},
-      {"name": "Pistol Squat je Seite", "metric": "reps", "target": 10, "difficulty": 0.58},
-      {"name": "Shrimp Squat je Seite", "metric": "reps", "target": 5, "difficulty": 0.72}
-    ]},
-    {"id": "hinge", "region": "legs", "name": "Beinbeuger", "sort": 2, "weight": 1.0, "stages": [
-      {"name": "Glute Bridge", "metric": "reps", "target": 20, "difficulty": 0.02},
-      {"name": "Einbeinige Glute Bridge je Seite", "metric": "reps", "target": 15, "difficulty": 0.08},
-      {"name": "Beinbeuger-Slide", "metric": "reps", "target": 12, "difficulty": 0.20},
-      {"name": "Nordic Curl negativ", "metric": "reps", "target": 5, "difficulty": 0.40},
-      {"name": "Nordic Curl", "metric": "reps", "target": 3, "difficulty": 0.65},
-      {"name": "Nordic Curl", "metric": "reps", "target": 8, "difficulty": 0.82}
-    ]},
-    {"id": "handstand", "region": "shoulders", "name": "Handstand", "sort": 1, "weight": 1.0, "stages": [
-      {"name": "Pike-Halten erhöht", "metric": "seconds", "target": 30, "difficulty": 0.06},
-      {"name": "Handstand Bauch zur Wand", "metric": "seconds", "target": 30, "difficulty": 0.16},
-      {"name": "Handstand Bauch zur Wand", "metric": "seconds", "target": 60, "difficulty": 0.26},
-      {"name": "Freier Handstand", "metric": "seconds", "target": 5, "difficulty": 0.42},
-      {"name": "Freier Handstand", "metric": "seconds", "target": 30, "difficulty": 0.60},
-      {"name": "Freier Handstand", "metric": "seconds", "target": 60, "difficulty": 0.74}
-    ]},
-    {"id": "hspu", "region": "shoulders", "name": "Handstand-Drücken", "sort": 2, "weight": 1.0, "stages": [
-      {"name": "Pike-Liegestütz", "metric": "reps", "target": 10, "difficulty": 0.12},
-      {"name": "Pike-Liegestütz erhöht", "metric": "reps", "target": 10, "difficulty": 0.24},
-      {"name": "HSPU an der Wand negativ", "metric": "reps", "target": 5, "difficulty": 0.40},
-      {"name": "HSPU an der Wand", "metric": "reps", "target": 5, "difficulty": 0.56},
-      {"name": "HSPU an der Wand tief (Parallettes)", "metric": "reps", "target": 5, "difficulty": 0.72},
-      {"name": "Freier HSPU", "metric": "reps", "target": 1, "difficulty": 0.90}
-    ]},
-    {"id": "hang", "region": "grip", "name": "Hängen", "sort": 1, "weight": 1.0, "stages": [
-      {"name": "Passives Hängen", "metric": "seconds", "target": 20, "difficulty": 0.02},
-      {"name": "Passives Hängen", "metric": "seconds", "target": 60, "difficulty": 0.10},
-      {"name": "Einarmig hängen je Seite", "metric": "seconds", "target": 10, "difficulty": 0.34},
-      {"name": "Einarmig hängen je Seite", "metric": "seconds", "target": 30, "difficulty": 0.56},
-      {"name": "Handtuch-Hängen einarmig je Seite", "metric": "seconds", "target": 10, "difficulty": 0.76}
-    ]},
-    {"id": "fingers", "region": "grip", "name": "Finger & Unterarm", "sort": 2, "weight": 1.0, "stages": [
-      {"name": "Fingerspitzen-Plank", "metric": "seconds", "target": 20, "difficulty": 0.06},
-      {"name": "Hängen am Handtuch beidarmig", "metric": "seconds", "target": 30, "difficulty": 0.18},
-      {"name": "Fingerspitzen-Liegestütz", "metric": "reps", "target": 10, "difficulty": 0.36},
-      {"name": "Klimmzug am Handtuch", "metric": "reps", "target": 3, "difficulty": 0.55},
-      {"name": "Fingerspitzen-Liegestütz einarmig-Ansatz", "metric": "reps", "target": 3, "difficulty": 0.74}
-    ]}
-  ]
+ "version": 2,
+ "renamed": {},
+ "regions": [
+  {
+   "id": "push",
+   "name": "Drücken",
+   "sort": 1
+  },
+  {
+   "id": "pull",
+   "name": "Ziehen",
+   "sort": 2
+  },
+  {
+   "id": "core",
+   "name": "Rumpf",
+   "sort": 3
+  },
+  {
+   "id": "legs",
+   "name": "Beine",
+   "sort": 4
+  },
+  {
+   "id": "shoulders",
+   "name": "Schultern",
+   "sort": 5
+  },
+  {
+   "id": "grip",
+   "name": "Griff",
+   "sort": 6
+  }
+ ],
+ "lines": [
+  {
+   "id": "pushup",
+   "region": "push",
+   "name": "Liegestütz",
+   "sort": 1,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Wand-Liegestütz",
+     "metric": "reps",
+     "target": 20,
+     "difficulty": 0.02
+    },
+    {
+     "name": "Erhöhter Liegestütz",
+     "metric": "reps",
+     "target": 15,
+     "difficulty": 0.06
+    },
+    {
+     "name": "Knie-Liegestütz",
+     "metric": "reps",
+     "target": 15,
+     "difficulty": 0.1
+    },
+    {
+     "name": "Liegestütz",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.18
+    },
+    {
+     "name": "Liegestütz",
+     "metric": "reps",
+     "target": 25,
+     "difficulty": 0.28
+    },
+    {
+     "name": "Diamant-Liegestütz",
+     "metric": "reps",
+     "target": 12,
+     "difficulty": 0.36
+    },
+    {
+     "name": "Archer-Liegestütz je Seite",
+     "metric": "reps",
+     "target": 6,
+     "difficulty": 0.52
+    },
+    {
+     "name": "Einarmiger Liegestütz je Seite",
+     "metric": "reps",
+     "target": 3,
+     "difficulty": 0.75
+    }
+   ]
+  },
+  {
+   "id": "dip",
+   "region": "push",
+   "name": "Dip",
+   "sort": 2,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Bank-Dip",
+     "metric": "reps",
+     "target": 15,
+     "difficulty": 0.06
+    },
+    {
+     "name": "Stütz am Barren",
+     "metric": "seconds",
+     "target": 30,
+     "difficulty": 0.12
+    },
+    {
+     "name": "Negativ-Dip (5 s ab)",
+     "metric": "reps",
+     "target": 6,
+     "difficulty": 0.18
+    },
+    {
+     "name": "Dip",
+     "metric": "reps",
+     "target": 8,
+     "difficulty": 0.3
+    },
+    {
+     "name": "Dip",
+     "metric": "reps",
+     "target": 20,
+     "difficulty": 0.45
+    },
+    {
+     "name": "Ring-Dip",
+     "metric": "reps",
+     "target": 8,
+     "difficulty": 0.62
+    },
+    {
+     "name": "Korean Dip",
+     "metric": "reps",
+     "target": 5,
+     "difficulty": 0.78
+    }
+   ]
+  },
+  {
+   "id": "pullup",
+   "region": "pull",
+   "name": "Klimmzug",
+   "sort": 1,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Aktives Hängen",
+     "metric": "seconds",
+     "target": 20,
+     "difficulty": 0.05
+    },
+    {
+     "name": "Negativ-Klimmzug (5 s ab)",
+     "metric": "reps",
+     "target": 5,
+     "difficulty": 0.14
+    },
+    {
+     "name": "Klimmzug",
+     "metric": "reps",
+     "target": 1,
+     "difficulty": 0.22
+    },
+    {
+     "name": "Klimmzug",
+     "metric": "reps",
+     "target": 8,
+     "difficulty": 0.34
+    },
+    {
+     "name": "Klimmzug",
+     "metric": "reps",
+     "target": 15,
+     "difficulty": 0.48
+    },
+    {
+     "name": "Archer-Klimmzug je Seite",
+     "metric": "reps",
+     "target": 4,
+     "difficulty": 0.64
+    },
+    {
+     "name": "Muscle-up",
+     "metric": "reps",
+     "target": 1,
+     "difficulty": 0.72
+    },
+    {
+     "name": "Einarmiger Klimmzug",
+     "metric": "reps",
+     "target": 1,
+     "difficulty": 0.92
+    }
+   ]
+  },
+  {
+   "id": "row",
+   "region": "pull",
+   "name": "Rudern",
+   "sort": 2,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Steiles Rudern am Tisch/Ring",
+     "metric": "reps",
+     "target": 15,
+     "difficulty": 0.04
+    },
+    {
+     "name": "Waagerechtes Rudern",
+     "metric": "reps",
+     "target": 12,
+     "difficulty": 0.14
+    },
+    {
+     "name": "Rudern mit erhöhten Füßen",
+     "metric": "reps",
+     "target": 12,
+     "difficulty": 0.26
+    },
+    {
+     "name": "Archer-Rudern je Seite",
+     "metric": "reps",
+     "target": 8,
+     "difficulty": 0.4
+    },
+    {
+     "name": "Tuck Front Lever",
+     "metric": "seconds",
+     "target": 10,
+     "difficulty": 0.5
+    },
+    {
+     "name": "Front Lever einbeinig",
+     "metric": "seconds",
+     "target": 8,
+     "difficulty": 0.68
+    },
+    {
+     "name": "Front Lever",
+     "metric": "seconds",
+     "target": 5,
+     "difficulty": 0.88
+    }
+   ]
+  },
+  {
+   "id": "lsit",
+   "region": "core",
+   "name": "L-Sitz",
+   "sort": 1,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Stütz mit angezogenen Knien",
+     "metric": "seconds",
+     "target": 15,
+     "difficulty": 0.08
+    },
+    {
+     "name": "Einbeiniger L-Sitz",
+     "metric": "seconds",
+     "target": 15,
+     "difficulty": 0.18
+    },
+    {
+     "name": "L-Sitz",
+     "metric": "seconds",
+     "target": 10,
+     "difficulty": 0.3
+    },
+    {
+     "name": "L-Sitz",
+     "metric": "seconds",
+     "target": 30,
+     "difficulty": 0.44
+    },
+    {
+     "name": "V-Sitz-Ansatz",
+     "metric": "seconds",
+     "target": 5,
+     "difficulty": 0.66
+    },
+    {
+     "name": "V-Sitz",
+     "metric": "seconds",
+     "target": 5,
+     "difficulty": 0.85
+    }
+   ]
+  },
+  {
+   "id": "legraise",
+   "region": "core",
+   "name": "Beinheben hängend",
+   "sort": 2,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Knieheben liegend",
+     "metric": "reps",
+     "target": 15,
+     "difficulty": 0.03
+    },
+    {
+     "name": "Knieheben hängend",
+     "metric": "reps",
+     "target": 12,
+     "difficulty": 0.12
+    },
+    {
+     "name": "Beinheben hängend bis 90°",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.26
+    },
+    {
+     "name": "Zehen zur Stange",
+     "metric": "reps",
+     "target": 8,
+     "difficulty": 0.42
+    },
+    {
+     "name": "Zehen zur Stange",
+     "metric": "reps",
+     "target": 15,
+     "difficulty": 0.55
+    },
+    {
+     "name": "Dragon Flag negativ",
+     "metric": "reps",
+     "target": 5,
+     "difficulty": 0.7
+    }
+   ]
+  },
+  {
+   "id": "squat",
+   "region": "legs",
+   "name": "Kniebeuge",
+   "sort": 1,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Kniebeuge zur Box",
+     "metric": "reps",
+     "target": 15,
+     "difficulty": 0.02
+    },
+    {
+     "name": "Kniebeuge",
+     "metric": "reps",
+     "target": 30,
+     "difficulty": 0.08
+    },
+    {
+     "name": "Bulgarische Split-Kniebeuge je Seite",
+     "metric": "reps",
+     "target": 12,
+     "difficulty": 0.18
+    },
+    {
+     "name": "Pistol zur Box je Seite",
+     "metric": "reps",
+     "target": 8,
+     "difficulty": 0.3
+    },
+    {
+     "name": "Pistol Squat je Seite",
+     "metric": "reps",
+     "target": 3,
+     "difficulty": 0.44
+    },
+    {
+     "name": "Pistol Squat je Seite",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.58
+    },
+    {
+     "name": "Shrimp Squat je Seite",
+     "metric": "reps",
+     "target": 5,
+     "difficulty": 0.72
+    }
+   ]
+  },
+  {
+   "id": "hinge",
+   "region": "legs",
+   "name": "Beinbeuger",
+   "sort": 2,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Glute Bridge",
+     "metric": "reps",
+     "target": 20,
+     "difficulty": 0.02
+    },
+    {
+     "name": "Einbeinige Glute Bridge je Seite",
+     "metric": "reps",
+     "target": 15,
+     "difficulty": 0.08
+    },
+    {
+     "name": "Beinbeuger-Slide",
+     "metric": "reps",
+     "target": 12,
+     "difficulty": 0.2
+    },
+    {
+     "name": "Nordic Curl negativ",
+     "metric": "reps",
+     "target": 5,
+     "difficulty": 0.4
+    },
+    {
+     "name": "Nordic Curl",
+     "metric": "reps",
+     "target": 3,
+     "difficulty": 0.65
+    },
+    {
+     "name": "Nordic Curl",
+     "metric": "reps",
+     "target": 8,
+     "difficulty": 0.82
+    }
+   ]
+  },
+  {
+   "id": "handstand",
+   "region": "shoulders",
+   "name": "Handstand",
+   "sort": 1,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Pike-Halten erhöht",
+     "metric": "seconds",
+     "target": 30,
+     "difficulty": 0.06
+    },
+    {
+     "name": "Handstand Bauch zur Wand",
+     "metric": "seconds",
+     "target": 30,
+     "difficulty": 0.16
+    },
+    {
+     "name": "Handstand Bauch zur Wand",
+     "metric": "seconds",
+     "target": 60,
+     "difficulty": 0.26
+    },
+    {
+     "name": "Freier Handstand",
+     "metric": "seconds",
+     "target": 5,
+     "difficulty": 0.42
+    },
+    {
+     "name": "Freier Handstand",
+     "metric": "seconds",
+     "target": 30,
+     "difficulty": 0.6
+    },
+    {
+     "name": "Freier Handstand",
+     "metric": "seconds",
+     "target": 60,
+     "difficulty": 0.74
+    }
+   ]
+  },
+  {
+   "id": "hspu",
+   "region": "shoulders",
+   "name": "Handstand-Drücken",
+   "sort": 2,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Pike-Liegestütz",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.12
+    },
+    {
+     "name": "Pike-Liegestütz erhöht",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.24
+    },
+    {
+     "name": "HSPU an der Wand negativ",
+     "metric": "reps",
+     "target": 5,
+     "difficulty": 0.4
+    },
+    {
+     "name": "HSPU an der Wand",
+     "metric": "reps",
+     "target": 5,
+     "difficulty": 0.56
+    },
+    {
+     "name": "HSPU an der Wand tief (Parallettes)",
+     "metric": "reps",
+     "target": 5,
+     "difficulty": 0.72
+    },
+    {
+     "name": "Freier HSPU",
+     "metric": "reps",
+     "target": 1,
+     "difficulty": 0.9
+    }
+   ]
+  },
+  {
+   "id": "hang",
+   "region": "grip",
+   "name": "Hängen",
+   "sort": 1,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Passives Hängen",
+     "metric": "seconds",
+     "target": 20,
+     "difficulty": 0.02
+    },
+    {
+     "name": "Passives Hängen",
+     "metric": "seconds",
+     "target": 60,
+     "difficulty": 0.1
+    },
+    {
+     "name": "Einarmig hängen je Seite",
+     "metric": "seconds",
+     "target": 10,
+     "difficulty": 0.34
+    },
+    {
+     "name": "Einarmig hängen je Seite",
+     "metric": "seconds",
+     "target": 30,
+     "difficulty": 0.56
+    },
+    {
+     "name": "Handtuch-Hängen einarmig je Seite",
+     "metric": "seconds",
+     "target": 10,
+     "difficulty": 0.76
+    }
+   ]
+  },
+  {
+   "id": "fingers",
+   "region": "grip",
+   "name": "Finger & Unterarm",
+   "sort": 2,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Fingerspitzen-Plank",
+     "metric": "seconds",
+     "target": 20,
+     "difficulty": 0.06
+    },
+    {
+     "name": "Hängen am Handtuch beidarmig",
+     "metric": "seconds",
+     "target": 30,
+     "difficulty": 0.18
+    },
+    {
+     "name": "Fingerspitzen-Liegestütz",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.36
+    },
+    {
+     "name": "Klimmzug am Handtuch",
+     "metric": "reps",
+     "target": 3,
+     "difficulty": 0.55
+    },
+    {
+     "name": "Fingerspitzen-Liegestütz einarmig-Ansatz",
+     "metric": "reps",
+     "target": 3,
+     "difficulty": 0.74
+    }
+   ]
+  },
+  {
+   "id": "planche",
+   "region": "push",
+   "name": "Planche",
+   "sort": 3,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Planche Lean",
+     "metric": "seconds",
+     "target": 20,
+     "difficulty": 0.1
+    },
+    {
+     "name": "Frog-Stand",
+     "metric": "seconds",
+     "target": 20,
+     "difficulty": 0.18
+    },
+    {
+     "name": "Tuck Planche",
+     "metric": "seconds",
+     "target": 5,
+     "difficulty": 0.4
+    },
+    {
+     "name": "Tuck Planche",
+     "metric": "seconds",
+     "target": 15,
+     "difficulty": 0.52
+    },
+    {
+     "name": "Advanced Tuck Planche",
+     "metric": "seconds",
+     "target": 8,
+     "difficulty": 0.66
+    },
+    {
+     "name": "Straddle Planche",
+     "metric": "seconds",
+     "target": 3,
+     "difficulty": 0.84
+    },
+    {
+     "name": "Full Planche",
+     "metric": "seconds",
+     "target": 2,
+     "difficulty": 0.97
+    }
+   ]
+  },
+  {
+   "id": "pppu",
+   "region": "push",
+   "name": "Pseudo-Planche-Liegestütz",
+   "sort": 4,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Liegestütz mit Vorlage",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.16
+    },
+    {
+     "name": "Pseudo-Planche-Liegestütz",
+     "metric": "reps",
+     "target": 5,
+     "difficulty": 0.3
+    },
+    {
+     "name": "Pseudo-Planche-Liegestütz",
+     "metric": "reps",
+     "target": 12,
+     "difficulty": 0.44
+    },
+    {
+     "name": "Pseudo-Planche-Liegestütz an Parallettes, tief",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.58
+    },
+    {
+     "name": "Tuck-Planche-Liegestütz",
+     "metric": "reps",
+     "target": 3,
+     "difficulty": 0.76
+    }
+   ]
+  },
+  {
+   "id": "ringsupport",
+   "region": "push",
+   "name": "Ring-Stütz",
+   "sort": 5,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Stütz am Barren",
+     "metric": "seconds",
+     "target": 30,
+     "difficulty": 0.06
+    },
+    {
+     "name": "Ring-Stütz",
+     "metric": "seconds",
+     "target": 10,
+     "difficulty": 0.16
+    },
+    {
+     "name": "Ring-Stütz",
+     "metric": "seconds",
+     "target": 30,
+     "difficulty": 0.26
+    },
+    {
+     "name": "Ring-Stütz ausgedreht",
+     "metric": "seconds",
+     "target": 20,
+     "difficulty": 0.4
+    },
+    {
+     "name": "Ring-Stütz ausgedreht",
+     "metric": "seconds",
+     "target": 60,
+     "difficulty": 0.55
+    }
+   ]
+  },
+  {
+   "id": "explosive",
+   "region": "push",
+   "name": "Explosiver Liegestütz",
+   "sort": 6,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Liegestütz mit Abheben",
+     "metric": "reps",
+     "target": 8,
+     "difficulty": 0.18
+    },
+    {
+     "name": "Klatsch-Liegestütz",
+     "metric": "reps",
+     "target": 8,
+     "difficulty": 0.3
+    },
+    {
+     "name": "Brust-Klatsch-Liegestütz",
+     "metric": "reps",
+     "target": 5,
+     "difficulty": 0.46
+    },
+    {
+     "name": "Doppel-Klatsch-Liegestütz",
+     "metric": "reps",
+     "target": 3,
+     "difficulty": 0.6
+    },
+    {
+     "name": "Superman-Liegestütz",
+     "metric": "reps",
+     "target": 3,
+     "difficulty": 0.8
+    }
+   ]
+  },
+  {
+   "id": "chinup",
+   "region": "pull",
+   "name": "Klimmzug Untergriff",
+   "sort": 3,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Hängen oben im Untergriff",
+     "metric": "seconds",
+     "target": 15,
+     "difficulty": 0.08
+    },
+    {
+     "name": "Negativ (5 s ab)",
+     "metric": "reps",
+     "target": 5,
+     "difficulty": 0.13
+    },
+    {
+     "name": "Klimmzug Untergriff",
+     "metric": "reps",
+     "target": 3,
+     "difficulty": 0.22
+    },
+    {
+     "name": "Klimmzug Untergriff",
+     "metric": "reps",
+     "target": 12,
+     "difficulty": 0.38
+    },
+    {
+     "name": "Klimmzug Untergriff",
+     "metric": "reps",
+     "target": 20,
+     "difficulty": 0.52
+    },
+    {
+     "name": "Einarmiger Negativ-Klimmzug je Seite",
+     "metric": "reps",
+     "target": 3,
+     "difficulty": 0.7
+    }
+   ]
+  },
+  {
+   "id": "muscleup",
+   "region": "pull",
+   "name": "Muscle-up",
+   "sort": 4,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Explosiver Klimmzug bis Brust",
+     "metric": "reps",
+     "target": 5,
+     "difficulty": 0.38
+    },
+    {
+     "name": "Explosiver Klimmzug bis Hüfte",
+     "metric": "reps",
+     "target": 3,
+     "difficulty": 0.52
+    },
+    {
+     "name": "Muscle-up mit Schwung",
+     "metric": "reps",
+     "target": 1,
+     "difficulty": 0.6
+    },
+    {
+     "name": "Strikter Muscle-up",
+     "metric": "reps",
+     "target": 1,
+     "difficulty": 0.7
+    },
+    {
+     "name": "Strikter Muscle-up",
+     "metric": "reps",
+     "target": 5,
+     "difficulty": 0.82
+    },
+    {
+     "name": "Ring-Muscle-up strikt",
+     "metric": "reps",
+     "target": 3,
+     "difficulty": 0.88
+    }
+   ]
+  },
+  {
+   "id": "backlever",
+   "region": "pull",
+   "name": "Back Lever",
+   "sort": 5,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Skin the Cat",
+     "metric": "reps",
+     "target": 5,
+     "difficulty": 0.12
+    },
+    {
+     "name": "German Hang",
+     "metric": "seconds",
+     "target": 20,
+     "difficulty": 0.18
+    },
+    {
+     "name": "Tuck Back Lever",
+     "metric": "seconds",
+     "target": 10,
+     "difficulty": 0.3
+    },
+    {
+     "name": "Advanced Tuck Back Lever",
+     "metric": "seconds",
+     "target": 10,
+     "difficulty": 0.44
+    },
+    {
+     "name": "Straddle Back Lever",
+     "metric": "seconds",
+     "target": 8,
+     "difficulty": 0.6
+    },
+    {
+     "name": "Back Lever",
+     "metric": "seconds",
+     "target": 5,
+     "difficulty": 0.72
+    }
+   ]
+  },
+  {
+   "id": "typewriter",
+   "region": "pull",
+   "name": "Typewriter-Klimmzug",
+   "sort": 6,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Breiter Klimmzug",
+     "metric": "reps",
+     "target": 8,
+     "difficulty": 0.36
+    },
+    {
+     "name": "Typewriter je Seite",
+     "metric": "reps",
+     "target": 2,
+     "difficulty": 0.52
+    },
+    {
+     "name": "Typewriter je Seite",
+     "metric": "reps",
+     "target": 5,
+     "difficulty": 0.64
+    },
+    {
+     "name": "Archer-Klimmzug gestreckt je Seite",
+     "metric": "reps",
+     "target": 5,
+     "difficulty": 0.74
+    }
+   ]
+  },
+  {
+   "id": "hollow",
+   "region": "core",
+   "name": "Hollow Body",
+   "sort": 3,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Hollow mit angezogenen Knien",
+     "metric": "seconds",
+     "target": 30,
+     "difficulty": 0.03
+    },
+    {
+     "name": "Hollow mit gestreckten Beinen",
+     "metric": "seconds",
+     "target": 30,
+     "difficulty": 0.1
+    },
+    {
+     "name": "Hollow mit gestreckten Beinen",
+     "metric": "seconds",
+     "target": 60,
+     "difficulty": 0.2
+    },
+    {
+     "name": "Hollow Rocks",
+     "metric": "reps",
+     "target": 30,
+     "difficulty": 0.3
+    }
+   ]
+  },
+  {
+   "id": "abwheel",
+   "region": "core",
+   "name": "Ab Wheel",
+   "sort": 4,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Ab Wheel von den Knien, kurz",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.12
+    },
+    {
+     "name": "Ab Wheel von den Knien, voll",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.26
+    },
+    {
+     "name": "Ab Wheel stehend, negativ",
+     "metric": "reps",
+     "target": 3,
+     "difficulty": 0.48
+    },
+    {
+     "name": "Ab Wheel stehend",
+     "metric": "reps",
+     "target": 5,
+     "difficulty": 0.64
+    },
+    {
+     "name": "Ab Wheel stehend",
+     "metric": "reps",
+     "target": 12,
+     "difficulty": 0.78
+    }
+   ]
+  },
+  {
+   "id": "dragonflag",
+   "region": "core",
+   "name": "Dragon Flag",
+   "sort": 5,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Liegendes Beinheben",
+     "metric": "reps",
+     "target": 15,
+     "difficulty": 0.05
+    },
+    {
+     "name": "Dragon Flag gebeugt negativ",
+     "metric": "reps",
+     "target": 5,
+     "difficulty": 0.3
+    },
+    {
+     "name": "Dragon Flag negativ",
+     "metric": "reps",
+     "target": 5,
+     "difficulty": 0.46
+    },
+    {
+     "name": "Dragon Flag",
+     "metric": "reps",
+     "target": 3,
+     "difficulty": 0.62
+    },
+    {
+     "name": "Dragon Flag",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.78
+    }
+   ]
+  },
+  {
+   "id": "humanflag",
+   "region": "core",
+   "name": "Human Flag",
+   "sort": 6,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Seitstütz",
+     "metric": "seconds",
+     "target": 45,
+     "difficulty": 0.05
+    },
+    {
+     "name": "Seitstütz mit Bein angehoben",
+     "metric": "seconds",
+     "target": 30,
+     "difficulty": 0.12
+    },
+    {
+     "name": "Human-Flag-Halten senkrecht",
+     "metric": "seconds",
+     "target": 10,
+     "difficulty": 0.36
+    },
+    {
+     "name": "Tuck Human Flag",
+     "metric": "seconds",
+     "target": 5,
+     "difficulty": 0.54
+    },
+    {
+     "name": "Straddle Human Flag",
+     "metric": "seconds",
+     "target": 5,
+     "difficulty": 0.72
+    },
+    {
+     "name": "Human Flag",
+     "metric": "seconds",
+     "target": 5,
+     "difficulty": 0.86
+    }
+   ]
+  },
+  {
+   "id": "lsitpress",
+   "region": "core",
+   "name": "Kompression",
+   "sort": 7,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Sitzend Beine heben, Hände neben Knien",
+     "metric": "seconds",
+     "target": 10,
+     "difficulty": 0.1
+    },
+    {
+     "name": "Pike Compression Lifts",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.24
+    },
+    {
+     "name": "Straddle-Sitz Beine angehoben",
+     "metric": "seconds",
+     "target": 10,
+     "difficulty": 0.4
+    },
+    {
+     "name": "Pike-Sitz Beine angehoben",
+     "metric": "seconds",
+     "target": 10,
+     "difficulty": 0.56
+    }
+   ]
+  },
+  {
+   "id": "calf",
+   "region": "legs",
+   "name": "Wade",
+   "sort": 3,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Wadenheben beidbeinig",
+     "metric": "reps",
+     "target": 25,
+     "difficulty": 0.02
+    },
+    {
+     "name": "Wadenheben einbeinig je Seite",
+     "metric": "reps",
+     "target": 15,
+     "difficulty": 0.1
+    },
+    {
+     "name": "Wadenheben einbeinig je Seite",
+     "metric": "reps",
+     "target": 30,
+     "difficulty": 0.24
+    }
+   ]
+  },
+  {
+   "id": "jump",
+   "region": "legs",
+   "name": "Sprungkraft",
+   "sort": 4,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Strecksprung",
+     "metric": "reps",
+     "target": 15,
+     "difficulty": 0.04
+    },
+    {
+     "name": "Box Jump kniehoch",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.14
+    },
+    {
+     "name": "Weitsprung ≥ Körpergröße",
+     "metric": "reps",
+     "target": 1,
+     "difficulty": 0.3
+    },
+    {
+     "name": "Box Jump hüfthoch",
+     "metric": "reps",
+     "target": 5,
+     "difficulty": 0.44
+    },
+    {
+     "name": "Einbeiniger Box Jump je Seite",
+     "metric": "reps",
+     "target": 5,
+     "difficulty": 0.6
+    }
+   ]
+  },
+  {
+   "id": "sissy",
+   "region": "legs",
+   "name": "Sissy Squat",
+   "sort": 5,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Sissy Squat mit Halt, kurz",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.12
+    },
+    {
+     "name": "Sissy Squat mit Halt, tief",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.28
+    },
+    {
+     "name": "Sissy Squat frei",
+     "metric": "reps",
+     "target": 8,
+     "difficulty": 0.46
+    },
+    {
+     "name": "Sissy Squat frei",
+     "metric": "reps",
+     "target": 20,
+     "difficulty": 0.62
+    }
+   ]
+  },
+  {
+   "id": "slrdl",
+   "region": "legs",
+   "name": "Einbeiniges Kreuzheben",
+   "sort": 6,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Hüftbeuge einbeinig mit Halt je Seite",
+     "metric": "reps",
+     "target": 12,
+     "difficulty": 0.04
+    },
+    {
+     "name": "Einbeiniges Kreuzheben frei je Seite",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.12
+    },
+    {
+     "name": "Einbeiniges Kreuzheben, Hand zum Boden je Seite",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.24
+    },
+    {
+     "name": "Skater Squat je Seite",
+     "metric": "reps",
+     "target": 8,
+     "difficulty": 0.4
+    }
+   ]
+  },
+  {
+   "id": "lunge",
+   "region": "legs",
+   "name": "Ausfallschritt",
+   "sort": 7,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Ausfallschritt je Seite",
+     "metric": "reps",
+     "target": 12,
+     "difficulty": 0.03
+    },
+    {
+     "name": "Reverse Lunge mit Knieheben je Seite",
+     "metric": "reps",
+     "target": 12,
+     "difficulty": 0.08
+    },
+    {
+     "name": "Sprung-Ausfallschritt je Seite",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.18
+    },
+    {
+     "name": "Deficit Reverse Lunge je Seite",
+     "metric": "reps",
+     "target": 15,
+     "difficulty": 0.26
+    }
+   ]
+  },
+  {
+   "id": "bridge",
+   "region": "shoulders",
+   "name": "Brücke",
+   "sort": 3,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Schulterbrücke",
+     "metric": "seconds",
+     "target": 30,
+     "difficulty": 0.03
+    },
+    {
+     "name": "Brücke vom Boden",
+     "metric": "seconds",
+     "target": 15,
+     "difficulty": 0.12
+    },
+    {
+     "name": "Brücke mit gestreckten Armen",
+     "metric": "seconds",
+     "target": 30,
+     "difficulty": 0.24
+    },
+    {
+     "name": "Brücke aus dem Stand an der Wand",
+     "metric": "reps",
+     "target": 3,
+     "difficulty": 0.4
+    },
+    {
+     "name": "Brücke aus dem Stand frei",
+     "metric": "reps",
+     "target": 1,
+     "difficulty": 0.58
+    }
+   ]
+  },
+  {
+   "id": "press",
+   "region": "shoulders",
+   "name": "Press to Handstand",
+   "sort": 4,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Kopfstand-Pike-Press",
+     "metric": "reps",
+     "target": 3,
+     "difficulty": 0.3
+    },
+    {
+     "name": "Tuck Press an der Wand",
+     "metric": "reps",
+     "target": 3,
+     "difficulty": 0.46
+    },
+    {
+     "name": "Straddle Press an der Wand",
+     "metric": "reps",
+     "target": 3,
+     "difficulty": 0.6
+    },
+    {
+     "name": "Straddle Press frei",
+     "metric": "reps",
+     "target": 1,
+     "difficulty": 0.74
+    },
+    {
+     "name": "Pike Press frei",
+     "metric": "reps",
+     "target": 1,
+     "difficulty": 0.88
+    }
+   ]
+  },
+  {
+   "id": "elbowlever",
+   "region": "shoulders",
+   "name": "Krähe & Elbow Lever",
+   "sort": 5,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Krähe",
+     "metric": "seconds",
+     "target": 10,
+     "difficulty": 0.08
+    },
+    {
+     "name": "Krähe",
+     "metric": "seconds",
+     "target": 30,
+     "difficulty": 0.16
+    },
+    {
+     "name": "Elbow Lever zweiarmig",
+     "metric": "seconds",
+     "target": 10,
+     "difficulty": 0.28
+    },
+    {
+     "name": "Elbow Lever einarmig je Seite",
+     "metric": "seconds",
+     "target": 5,
+     "difficulty": 0.5
+    }
+   ]
+  },
+  {
+   "id": "ringdip",
+   "region": "shoulders",
+   "name": "Ring-Stabilität",
+   "sort": 6,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Ring-Liegestütz-Position",
+     "metric": "seconds",
+     "target": 30,
+     "difficulty": 0.08
+    },
+    {
+     "name": "Ring-Liegestütz",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.22
+    },
+    {
+     "name": "Ring-Liegestütz ausgedreht",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.36
+    },
+    {
+     "name": "RTO Archer-Liegestütz an Ringen je Seite",
+     "metric": "reps",
+     "target": 5,
+     "difficulty": 0.56
+    }
+   ]
+  },
+  {
+   "id": "falsegrip",
+   "region": "grip",
+   "name": "False Grip",
+   "sort": 3,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "False Grip Hängen an Ringen",
+     "metric": "seconds",
+     "target": 10,
+     "difficulty": 0.12
+    },
+    {
+     "name": "False Grip Hängen",
+     "metric": "seconds",
+     "target": 30,
+     "difficulty": 0.24
+    },
+    {
+     "name": "False Grip Rudern",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.32
+    },
+    {
+     "name": "False Grip Klimmzug",
+     "metric": "reps",
+     "target": 5,
+     "difficulty": 0.46
+    }
+   ]
+  },
+  {
+   "id": "flexhang",
+   "region": "grip",
+   "name": "Gebeugtes Hängen",
+   "sort": 4,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Kinn über der Stange halten",
+     "metric": "seconds",
+     "target": 10,
+     "difficulty": 0.06
+    },
+    {
+     "name": "Kinn über der Stange halten",
+     "metric": "seconds",
+     "target": 30,
+     "difficulty": 0.16
+    },
+    {
+     "name": "Hängen mit 90° Ellbogen",
+     "metric": "seconds",
+     "target": 30,
+     "difficulty": 0.24
+    },
+    {
+     "name": "Einarmig gebeugt halten je Seite",
+     "metric": "seconds",
+     "target": 5,
+     "difficulty": 0.58
+    }
+   ]
+  },
+  {
+   "id": "wrist",
+   "region": "grip",
+   "name": "Handgelenke",
+   "sort": 5,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Handgelenkskreise im Vierfüßler",
+     "metric": "reps",
+     "target": 20,
+     "difficulty": 0.01
+    },
+    {
+     "name": "Handrücken-Liegestütz kniend",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.1
+    },
+    {
+     "name": "Fingerspitzen-Handgelenk-Liegestütz",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.22
+    },
+    {
+     "name": "Handrücken-Liegestütz",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.34
+    }
+   ]
+  },
+  {
+   "id": "curl",
+   "region": "pull",
+   "name": "Bizeps an Ringen",
+   "sort": 7,
+   "weight": 1.0,
+   "stages": [
+    {
+     "name": "Ring-Curl steil",
+     "metric": "reps",
+     "target": 12,
+     "difficulty": 0.04
+    },
+    {
+     "name": "Ring-Curl waagerecht",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.16
+    },
+    {
+     "name": "Ring-Curl mit erhöhten Füßen",
+     "metric": "reps",
+     "target": 10,
+     "difficulty": 0.28
+    },
+    {
+     "name": "Einarmiger Ring-Curl je Seite",
+     "metric": "reps",
+     "target": 6,
+     "difficulty": 0.44
+    }
+   ]
+  }
+ ]
 }

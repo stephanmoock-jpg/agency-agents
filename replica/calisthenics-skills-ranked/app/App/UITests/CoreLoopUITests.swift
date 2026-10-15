@@ -83,6 +83,17 @@ final class CoreLoopUITests: XCTestCase {
         app.buttons["Weiter"].tap()
     }
 
+    #if PERSONAL
+    // F04-H1 (Eigengebrauch): Plan ohne Kauf nutzbar
+    func testF04PlanFreeInPersonalBuild() throws {
+        onboard()
+        app.tabBars.buttons["Plan"].tap()
+        app.buttons["Plan erstellen"].tap()
+        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH 'Ziel:'")).firstMatch
+            .waitForExistence(timeout: 3))
+        try audit()
+    }
+    #else
     // F04-N1: Plan ohne PRO zeigt Hinweis statt Inhalt
     func testF04PlanLockedWithoutPro() throws {
         onboard()
@@ -98,6 +109,7 @@ final class CoreLoopUITests: XCTestCase {
         app.buttons["PRO ansehen"].tap()
         XCTAssertTrue(app.staticTexts["PRO"].waitForExistence(timeout: 5))
     }
+    #endif
 
     // S06/S07: Skills -> Linie -> Stufenkette
     func testSkillsNavigation() throws {

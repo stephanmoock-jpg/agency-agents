@@ -11,12 +11,14 @@ struct SettingsView: View {
 
     var body: some View {
         Form {
+            #if !PERSONAL
             Section("PRO") {
                 LabeledContent("Status", value: store.isPro ? "Aktiv" : "Nicht aktiv")
                 if !store.isPro { Button("PRO ansehen") { showPaywall = true } }
                 Button("Käufe wiederherstellen") { Task { await store.restore() } }
                 Link("Abo verwalten", destination: URL(string: "https://apps.apple.com/account/subscriptions")!)
             }
+            #endif
             Section("Daten") {
                 if let exportURL {
                     ShareLink("CSV teilen", item: exportURL)

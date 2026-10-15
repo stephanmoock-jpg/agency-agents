@@ -22,6 +22,7 @@ LINE_GRADE_THRESHOLDS = [0.15, 0.40, 0.65, 0.85]
 OVERALL_GRADE_THRESHOLDS = [0.05, 0.12, 0.20, 0.30, 0.42, 0.55, 0.70, 0.85]   # 8 Schwellen -> Grade 1..9
 TOP_K = 3
 TOP_K_FACTOR = 2.0
+OTHER_FACTOR = 0.25   # Linien außerhalb der Top-k: wenig Gewicht, damit untrainierte Linien die Region nicht verwässern
 BALANCE_BASE = 0.7
 BALANCE_WEIGHT = 0.3
 CONSISTENCY_DAYS = 14
@@ -121,7 +122,7 @@ def evaluate(c, logs, claims, now_ts, now_day):
                         key=lambda l: (-ls[l["id"]], l["sort"]))
             num = den = 0.0
             for rank, l in enumerate(rl):
-                w = l["weight"] * (TOP_K_FACTOR if rank < TOP_K else 1.0)
+                w = l["weight"] * (TOP_K_FACTOR if rank < TOP_K else OTHER_FACTOR)
                 num += w * ls[l["id"]]
                 den += w
             out[r["id"]] = num / den if den else 0.0

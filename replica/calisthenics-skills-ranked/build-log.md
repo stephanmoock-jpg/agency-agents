@@ -62,3 +62,21 @@ Erwartung: Compilerfehler in Screens sind möglich (ungebaut). Zuerst GradingKit
 - Restliche 26 Linien in `catalog.json` (Testkopie mit `cp` aktualisieren, Script prüft das).
 - App Store Connect: Produkte, Abo-Gruppe, echte `groupID` in `StoreService`.
 - Gradnamen/App-Name/Akzentfarbe: `replica-brand`.
+
+## Runde 2 (2026-10-15): Eigengebrauch
+
+Ziel: App nur für den Nutzer selbst, Test auf dem eigenen iPhone. Anleitung: `app/PERSONAL.md`.
+
+| Änderung | Datei | Status |
+| --- | --- | --- |
+| Flag `PERSONAL`: alles frei, kein StoreKit, PRO-Bereich in S13 ausgeblendet | project.yml, StoreService.swift, Settings.swift | geschrieben, ungebaut |
+| Katalog v2: 38 Linien, 199 Stufen (26 neu, eigene Progressionen, Schwierigkeit geschätzt) | App/Resources/catalog.json | Validierung grün |
+| Modell: Linien außerhalb der Top-3 einer Region mit Gewicht 0,25 statt 1 (sonst verwässern untrainierte Linien) | Grading.swift, grading_ref.py | Referenz grün, Vektoren neu |
+| Einstufung: 2 Kernlinien je Region = 12 Fragen statt 38 | Onboarding.swift | ungebaut |
+| LevelUp-Sheet 450 ms nach Log-Sheet (Präsentationskonflikt aus bugs.md „zu prüfen“) | GradeApp.swift | ungebaut, im Simulator prüfen |
+| UI-Tests: im PERSONAL-Build Plan-frei-Test statt Paywall-Tests | CoreLoopUITests.swift | ungebaut |
+| Signing: Automatic, Team in Xcode wählen | project.yml | — |
+
+Kalibrierung nach Modelländerung: „ausgeglichen“ (2 Linien je Region auf mittlerem Niveau) = Grad 3 statt 4, weil die dritte Top-Linie je Region jetzt fehlt. Wer 3 Linien je Region trainiert, steigt schneller. Beim Selbsttest beobachten.
+
+Geprüft: `grading_ref.py --check` (38 Linien, 0 Fehler, 11 Eigenschaftstests, 10 Vektoren), `edge_tests.py` 20/20. Swift weiterhin nicht kompiliert.

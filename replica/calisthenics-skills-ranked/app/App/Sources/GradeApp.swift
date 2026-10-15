@@ -60,7 +60,8 @@ struct MainTabs: View {
         }
         .overlay(alignment: .bottom) { LogToast().padding(.bottom, 64) }
         .onChange(of: model.lastOutcome) { _, o in
-            if let o, o.clearedStage != nil || o.overallGradeUp != nil || o.regionGradeUp != nil { levelUp = o }
+            guard let o, o.clearedStage != nil || o.overallGradeUp != nil || o.regionGradeUp != nil else { return }
+            Task { try? await Task.sleep(for: .milliseconds(450)); levelUp = o }   // nach Sheet-Dismiss
         }
         .sheet(item: $levelUp) { LevelUpSheet(outcome: $0) }
     }

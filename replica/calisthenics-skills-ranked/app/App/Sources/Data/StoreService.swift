@@ -12,6 +12,10 @@ final class StoreService {
     private var updates: Task<Void, Never>?
 
     init() {
+        #if PERSONAL
+        isPro = true            // Eigengebrauch: alles frei, kein StoreKit
+        return
+        #endif
         isPro = UserDefaults.standard.bool(forKey: "isProCache")   // nur für schnellen Kaltstart
         updates = Task { [weak self] in
             for await result in Transaction.updates {
@@ -23,6 +27,10 @@ final class StoreService {
     }
 
     func refresh() async {
+        #if PERSONAL
+        isPro = true
+        return
+        #endif
         var pro = false
         for await result in Transaction.currentEntitlements {
             if case .verified(let t) = result, Self.productIDs.contains(t.productID), t.revocationDate == nil {
