@@ -1,0 +1,189 @@
+{
+  "_about": "Dark theme: nur Farben. Alle anderen Tokens aus tokens.json.",
+  "color": {
+    "bg": "#0d0f12",
+    "surface": "#16191e",
+    "surface-raised": "#1e2228",
+    "border": "#2a2f37",
+    "border-input": "#6c7480",
+    "text": "#eef0f3",
+    "text-muted": "#a2aab5",
+    "accent": "#8199f2",
+    "on-accent": "#0d0f12",
+    "danger": "#ff8a85",
+    "success": "#5fcb8c",
+    "warning": "#efb44f",
+    "focus": "#8199f2",
+    "grade-1": "#5a626e",
+    "grade-2": "#7a5434",
+    "grade-3": "#2c7339",
+    "grade-4": "#1b6e79",
+    "grade-5": "#2a5fbe",
+    "grade-6": "#4a4dc4",
+    "grade-7": "#6f3fbd",
+    "grade-8": "#a3307b",
+    "grade-9": "#f0bd45",
+    "on-grade": "#ffffff",
+    "on-grade-9": "#1c1500",
+    "region-push": "#f08a55",
+    "region-pull": "#5ea8ef",
+    "region-core": "#5fc274",
+    "region-legs": "#a48df5",
+    "region-shoulders": "#f07aa6",
+    "region-grip": "#d6b640",
+    "power": "#8199f2",
+    "track": "#2a2f37",
+    "grade-ring": "#6c7480"
+  },
+  "pairs": [
+    [
+      "text",
+      "bg"
+    ],
+    [
+      "text",
+      "surface"
+    ],
+    [
+      "text",
+      "surface-raised"
+    ],
+    [
+      "text-muted",
+      "bg"
+    ],
+    [
+      "text-muted",
+      "surface"
+    ],
+    [
+      "text-muted",
+      "surface-raised"
+    ],
+    [
+      "on-accent",
+      "accent"
+    ],
+    [
+      "accent",
+      "bg"
+    ],
+    [
+      "accent",
+      "surface"
+    ],
+    [
+      "danger",
+      "bg"
+    ],
+    [
+      "success",
+      "bg"
+    ],
+    [
+      "warning",
+      "bg"
+    ],
+    [
+      "border-input",
+      "bg",
+      "ui"
+    ],
+    [
+      "focus",
+      "bg",
+      "ui"
+    ],
+    [
+      "focus",
+      "surface",
+      "ui"
+    ],
+    [
+      "on-grade",
+      "grade-1"
+    ],
+    [
+      "on-grade",
+      "grade-2"
+    ],
+    [
+      "on-grade",
+      "grade-3"
+    ],
+    [
+      "on-grade",
+      "grade-4"
+    ],
+    [
+      "on-grade",
+      "grade-5"
+    ],
+    [
+      "on-grade",
+      "grade-6"
+    ],
+    [
+      "on-grade",
+      "grade-7"
+    ],
+    [
+      "on-grade",
+      "grade-8"
+    ],
+    [
+      "on-grade-9",
+      "grade-9"
+    ],
+    [
+      "region-push",
+      "surface",
+      "ui"
+    ],
+    [
+      "region-pull",
+      "surface",
+      "ui"
+    ],
+    [
+      "region-core",
+      "surface",
+      "ui"
+    ],
+    [
+      "region-legs",
+      "surface",
+      "ui"
+    ],
+    [
+      "region-shoulders",
+      "surface",
+      "ui"
+    ],
+    [
+      "region-grip",
+      "surface",
+      "ui"
+    ],
+    [
+      "power",
+      "track",
+      "ui"
+    ],
+    [
+      "grade-ring",
+      "bg",
+      "ui"
+    ],
+    [
+      "grade-ring",
+      "surface",
+      "ui"
+    ],
+    [
+      "grade-ring",
+      "surface-raised",
+      "ui"
+    ]
+  ]
+}
