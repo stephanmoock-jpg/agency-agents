@@ -1,0 +1,88 @@
+# Baut und testet die Kreide-App (replica/calisthenics-skills-ranked/app) auf einem macOS-Runner.
+name: kreide-ios
+on:
+  push:
+    branches: [claude/dreamy-goldberg-f1z9jx]
+    paths:
+      - "replica/calisthenics-skills-ranked/**"
+      - ".github/workflows/kreide-ios.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: replica/calisthenics-skills-ranked/app
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Referenz (Python)
+        run: python3 -I tools/grading_ref.py --check && python3 -I tools/edge_tests.py
+
+      - name: Toolchain
+        run: xcodebuild -version && swift --version
+
+      - name: GradingKit-Tests
+        working-directory: replica/calisthenics-skills-ranked/app/Packages/GradingKit
+        run: swift test 2>&1 | tee ../../gradingkit.log
+
+      - name: Projekt erzeugen
+        run: brew install xcodegen && xcodegen
+
+      - name: Simulator wählen
+        id: sim
+        run: |
+          UDID=$(xcrun simctl list devices available -j | python3 -c 'import json,sys; d=json.load(sys.stdin)["devices"]; print(next(x["udid"] for k in sorted(d, reverse=True) if "iOS" in k for x in d[k] if x["name"].startswith("iPhone")))')
+          echo "udid=$UDID" >> "$GITHUB_OUTPUT"
+          xcrun simctl list devices | grep "$UDID"
+
+      - name: App bauen
+        run: |
+          set -o pipefail
+          xcodebuild build-for-testing -project GradeApp.xcodeproj -scheme GradeApp \
+            -destination "id=${{ steps.sim.outputs.udid }}" -derivedDataPath DD \
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tee build.log | grep -E "error:|\*\* BUILD" || true
+          grep -q "\*\* TEST BUILD SUCCEEDED \*\*" build.log
+
+      - name: Unit-Tests (AppModel)
+        if: success()
+        run: |
+          set -o pipefail
+          xcodebuild test-without-building -project GradeApp.xcodeproj -scheme GradeApp \
+            -destination "id=${{ steps.sim.outputs.udid }}" -derivedDataPath DD \
+            -only-testing:GradeAppTests 2>&1 | tee unit.log | grep -E "error:|Test Case .*(passed|failed)|\*\* TEST" || true
+          grep -q "\*\* TEST EXECUTE SUCCEEDED \*\*" unit.log
+
+      - name: UI-Tests
+        if: always() && steps.sim.outcome == 'success'
+        run: |
+          set -o pipefail
+          xcodebuild test-without-building -project GradeApp.xcodeproj -scheme GradeApp \
+            -destination "id=${{ steps.sim.outputs.udid }}" -derivedDataPath DD \
+            -only-testing:GradeAppUITests 2>&1 | tee ui.log | grep -E "error:|Test Case .*(passed|failed)|\*\* TEST" || true
+          grep -q "\*\* TEST EXECUTE SUCCEEDED \*\*" ui.log
+
+      - name: Screenshots S01 und S05 (Simulator)
+        if: always() && steps.sim.outcome == 'success'
+        continue-on-error: true
+        run: |
+          APP=$(find DD -path "*Debug-iphonesimulator/GradeApp.app" -maxdepth 6 | head -1)
+          xcrun simctl boot "${{ steps.sim.outputs.udid }}" || true
+          xcrun simctl install "${{ steps.sim.outputs.udid }}" "$APP"
+          BID=$(/usr/libexec/PlistBuddy -c "Print CFBundleIdentifier" "$APP/Info.plist")
+          xcrun simctl launch "${{ steps.sim.outputs.udid }}" "$BID"
+          sleep 6
+          mkdir -p ../clone-screens
+          xcrun simctl io "${{ steps.sim.outputs.udid }}" screenshot ../clone-screens/S01.png
+
+      - name: Logs und Screenshots hochladen
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kreide-logs
+          path: |
+            replica/calisthenics-skills-ranked/app/*.log
+            replica/calisthenics-skills-ranked/clone-screens/*.png
+          if-no-files-found: ignore
