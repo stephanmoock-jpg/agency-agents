@@ -58,6 +58,7 @@ import GradingKit
     var target: Int
     var sort: Int
     var doneAt: Date?
+    var doneManually = false               // per Haken gesetzt; sonst aus Logs abgeleitet (BUG-003)
     var plan: Plan?
     init(stageID: String, sets: Int, target: Int, sort: Int) {
         self.stageID = stageID; self.sets = sets; self.target = target; self.sort = sort

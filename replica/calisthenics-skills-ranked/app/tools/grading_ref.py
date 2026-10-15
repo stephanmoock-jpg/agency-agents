@@ -41,7 +41,18 @@ def load_catalog(path=CATALOG):
             stages[sid] = s
             line["stage_ids"].append(sid)
     c["stage_map"] = stages
+    c.setdefault("renamed", {})
     return c
+
+
+def usable_logs(c, logs):
+    """Wie GradingKit: umbenannte IDs auflösen, unbekannte IDs und Werte <= 0 ignorieren."""
+    out = []
+    for g in logs:
+        sid = c["renamed"].get(g["stage"], g["stage"])
+        if sid in c["stage_map"] and g["value"] > 0:
+            out.append({**g, "stage": sid})
+    return out
 
 
 def validate_catalog(c):
@@ -86,6 +97,7 @@ def evaluate(c, logs, claims, now_ts, now_day):
     """logs: [{stage, value, ts, day}] (nur nicht gelöschte). claims: {line_id: idx}."""
     st = c["stage_map"]
     lines = c["lines"]
+    logs = usable_logs(c, logs)
 
     logged_idx = {l["id"]: 0 for l in lines}
     for g in logs:
@@ -206,6 +218,8 @@ def cases():
         {"name": "einstufung_plus_logs", "claims": {"handstand": 5, "pullup": 6},
          "logs": [mk("pullup.04", 8, 1), mk("hang.02", 60, 2)]},
         {"name": "einstufung_ueber_max", "claims": {"hang": 99}, "logs": []},
+        {"name": "wert_null_negativ_unbekannt", "claims": {},
+         "logs": [mk("pushup.01", 0), mk("pushup.01", -5), mk("gibtsnicht.01", 10), mk("squat.02", 30)]},
     ]
 
 

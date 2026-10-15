@@ -17,11 +17,15 @@ struct PlanView: View {
 
     @ViewBuilder private var content: some View {
         let _ = model.summary            // beobachten: nach jedem Log neu zeichnen
-        if let plan = model.activePlan() {
+        if let plan = model.currentPlan() {
             List {
                 Section {
                     Text("Ziel: \(model.catalog.region(plan.targetRegionID)?.name ?? plan.targetRegionID) aufholen")
                         .font(DS.Typo.headline)
+                    if plan.status == "done" {
+                        Label("Plan erledigt. Erstelle einen neuen für den nächsten Schritt.", systemImage: "checkmark.seal")
+                            .foregroundStyle(DS.Palette.success)
+                    }
                 }
                 Section("Übungen") {
                     ForEach(plan.items.sorted { $0.sort < $1.sort }) { item in

@@ -910,5 +910,103 @@
     }
    ]
   }
+ },
+ {
+  "name": "wert_null_negativ_unbekannt",
+  "claims": {},
+  "logs": [
+   {
+    "stage": "pushup.01",
+    "value": 0,
+    "ts": 1792065600,
+    "day": "2026-10-15"
+   },
+   {
+    "stage": "pushup.01",
+    "value": -5,
+    "ts": 1792065600,
+    "day": "2026-10-15"
+   },
+   {
+    "stage": "gibtsnicht.01",
+    "value": 10,
+    "ts": 1792065600,
+    "day": "2026-10-15"
+   },
+   {
+    "stage": "squat.02",
+    "value": 30,
+    "ts": 1792065600,
+    "day": "2026-10-15"
+   }
+  ],
+  "now_ts": 1792065600,
+  "now_day": "2026-10-15",
+  "expected": {
+   "overall_grade": 1,
+   "overall_score": 0.004667,
+   "power": 139,
+   "region_grades": {
+    "push": 1,
+    "pull": 1,
+    "core": 1,
+    "legs": 1,
+    "shoulders": 1,
+    "grip": 1
+   },
+   "region_scores": {
+    "push": 0.0,
+    "pull": 0.0,
+    "core": 0.0,
+    "legs": 0.04,
+    "shoulders": 0.0,
+    "grip": 0.0
+   },
+   "weakest": "push",
+   "line_grades": {
+    "pushup": 0,
+    "dip": 0,
+    "pullup": 0,
+    "row": 0,
+    "lsit": 0,
+    "legraise": 0,
+    "squat": 0,
+    "hinge": 0,
+    "handstand": 0,
+    "hspu": 0,
+    "hang": 0,
+    "fingers": 0
+   },
+   "highest_logged": {
+    "pushup": 0,
+    "dip": 0,
+    "pullup": 0,
+    "row": 0,
+    "lsit": 0,
+    "legraise": 0,
+    "squat": 2,
+    "hinge": 0,
+    "handstand": 0,
+    "hspu": 0,
+    "hang": 0,
+    "fingers": 0
+   },
+   "cleared_stages": 2
+  },
+  "expected_plan": {
+   "region": "push",
+   "items": [
+    {
+     "stage": "pushup.01",
+     "sets": 3,
+     "target": 20
+    },
+    {
+     "stage": "dip.01",
+     "sets": 3,
+     "target": 15
+    }
+   ]
+  }
  }
 ]

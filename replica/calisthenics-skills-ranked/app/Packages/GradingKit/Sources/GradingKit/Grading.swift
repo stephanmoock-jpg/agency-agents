@@ -49,6 +49,12 @@ public struct RankSummary: Sendable, Equatable {
 public enum Grading {
     public static func evaluate(catalog c: Catalog, logs: [LogEntry], claims: [String: Int],
                                 now: Date, today: String, config cfg: GradingConfig = .init()) -> RankSummary {
+        // Unbekannte Stufen und Werte <= 0 zählen nirgends (auch nicht für Konstanz). BUG-001.
+        let logs = logs.compactMap { g -> LogEntry? in
+            let id = c.resolve(g.stageID)
+            guard g.value > 0, c.stages[id] != nil else { return nil }
+            return LogEntry(stageID: id, value: g.value, at: g.at, day: g.day)
+        }
         var loggedIdx = Dictionary(uniqueKeysWithValues: c.lines.map { ($0.id, 0) })
         for g in logs {
             guard let s = c.stages[c.resolve(g.stageID)] else { continue }

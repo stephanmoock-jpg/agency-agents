@@ -28,9 +28,18 @@ targets:
         CURRENT_PROJECT_VERSION: "1"
     scheme:
       storeKitConfiguration: App/Resources/Products.storekit
-      testTargets: [GradeAppUITests]
+      testTargets: [GradeAppTests, GradeAppUITests]
   GradeAppUITests:
     type: bundle.ui-testing
     platform: iOS
     sources: [App/UITests]
     dependencies: [{ target: GradeApp }]
+  GradeAppTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [App/Tests]
+    dependencies: [{ target: GradeApp }]
+    settings:
+      base:
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/GradeApp.app/GradeApp"
+        BUNDLE_LOADER: "$(TEST_HOST)"

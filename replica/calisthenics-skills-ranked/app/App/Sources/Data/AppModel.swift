@@ -90,13 +90,16 @@ final class AppModel {
 
     // MARK: Loggen (F02, F03)
 
+    static let valueRange = 1...10_000
+
     @discardableResult
-    func addLog(stageID: String, value: Int) -> LogOutcome {
+    func addLog(stageID: String, value: Int) -> LogOutcome? {
+        guard Self.valueRange.contains(value), catalog.stages[stageID] != nil else { return nil }   // BUG-001
         let before = summary
         let log = SetLog(stageID: stageID, value: value)
         context.insert(log)
         recompute()
-        markPlanItems(for: log)
+        refreshPlanItems()
         snapshot(reason: "log")
         save()
         let outcome = makeOutcome(before: before, after: summary, logID: log.id, stageID: stageID, value: value)
@@ -105,14 +108,15 @@ final class AppModel {
     }
 
     func editLog(_ log: SetLog, value: Int) {
+        guard Self.valueRange.contains(value) else { return }
         log.value = value; log.updatedAt = .now
-        recompute(); snapshot(reason: "log"); save()
+        recompute(); refreshPlanItems(); snapshot(reason: "log"); save()
     }
 
     func deleteLog(id: UUID) {
         guard let log = activeLogs().first(where: { $0.id == id }) else { return }
         log.deletedAt = .now; log.updatedAt = .now
-        recompute(); snapshot(reason: "log"); save()
+        recompute(); refreshPlanItems(); snapshot(reason: "log"); save()
         if lastOutcome?.logID == id { lastOutcome = nil }
     }
 
@@ -120,7 +124,7 @@ final class AppModel {
         let all = (try? context.fetch(FetchDescriptor<SetLog>())) ?? []
         guard let log = all.first(where: { $0.id == id }) else { return }
         log.deletedAt = nil; log.updatedAt = .now
-        recompute(); snapshot(reason: "log"); save()
+        recompute(); refreshPlanItems(); snapshot(reason: "log"); save()
     }
 
     func clearOutcome() { lastOutcome = nil }
@@ -142,7 +146,7 @@ final class AppModel {
 
     @discardableResult
     func generatePlan() -> Plan {
-        activePlan()?.status = "replaced"
+        currentPlan()?.status = "replaced"
         let draft = Planner.draft(catalog: catalog, summary: summary)
         let plan = Plan(targetRegionID: draft.regionID)
         context.insert(plan)
@@ -156,21 +160,30 @@ final class AppModel {
     }
 
     func toggleDone(_ item: PlanItem) {
-        item.doneAt = item.doneAt == nil ? .now : nil
-        closePlanIfDone()
+        item.doneManually.toggle()
+        refreshPlanItems()
         save()
     }
 
-    private func markPlanItems(for log: SetLog) {
-        guard let plan = activePlan() else { return }
-        for item in plan.items where item.doneAt == nil && item.stageID == log.stageID && log.value >= item.target {
-            item.doneAt = .now
-        }
-        closePlanIfDone()
+    /// Jüngster nicht ersetzter Plan (aktiv oder erledigt).
+    func currentPlan() -> Plan? {
+        ((try? context.fetch(FetchDescriptor<Plan>(sortBy: [SortDescriptor(\.createdAt, order: .reverse)]))) ?? [])
+            .first { $0.status != "replaced" }
     }
 
-    private func closePlanIfDone() {
-        if let plan = activePlan(), !plan.items.isEmpty, plan.items.allSatisfy({ $0.doneAt != nil }) { plan.status = "done" }
+    /// Erledigt-Status aus Haken + Logs seit Planerstellung ableiten. Läuft nach jeder Log-Änderung,
+    /// damit Rückgängig/Löschen/Ändern den Plan korrekt zurücksetzt (BUG-003).
+    func refreshPlanItems() {
+        guard let plan = currentPlan() else { return }
+        let logs = activeLogs().filter { $0.loggedAt >= plan.createdAt }
+        for item in plan.items {
+            let byLog = logs.first { catalog.resolve($0.stageID) == item.stageID && $0.value >= item.target }
+            let done = item.doneManually || byLog != nil
+            if done && item.doneAt == nil { item.doneAt = byLog?.loggedAt ?? .now }
+            if !done { item.doneAt = nil }
+        }
+        let allDone = !plan.items.isEmpty && plan.items.allSatisfy { $0.doneAt != nil }
+        plan.status = allDone ? "done" : "active"
     }
 
     // MARK: Rang

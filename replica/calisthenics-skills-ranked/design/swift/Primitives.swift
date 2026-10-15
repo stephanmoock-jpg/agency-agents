@@ -237,6 +237,7 @@ struct NumberStepper: View {
         }
         .padding(DS.Space.s3)
         .background(RoundedRectangle(cornerRadius: DS.Radius.md).strokeBorder(DS.Palette.borderInput, lineWidth: 1))
+        .onChange(of: value) { _, v in if !range.contains(v) { value = min(max(v, range.lowerBound), range.upperBound) } }  // BUG-001
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(metric.label)
         .accessibilityValue("\(value)")

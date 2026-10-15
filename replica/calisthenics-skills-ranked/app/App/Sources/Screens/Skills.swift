@@ -121,8 +121,12 @@ struct LogSheet: View {
                     .font(DS.Typo.footnote)
                     .foregroundStyle(value >= stage.target ? DS.Palette.success : DS.Palette.textMuted)
                 Spacer()
+                if !AppModel.valueRange.contains(value) {
+                    Text("Bitte einen Wert zwischen 1 und 10 000 eingeben.")
+                        .font(DS.Typo.footnote).foregroundStyle(DS.Palette.danger)
+                }
                 PrimaryButton(title: editing == nil ? "Speichern" : "Änderung speichern", isLoading: saving) {
-                    guard !saving else { return }
+                    guard !saving, AppModel.valueRange.contains(value) else { return }
                     saving = true
                     if let editing { model.editLog(editing, value: value) }
                     else { model.addLog(stageID: stage.id, value: value) }

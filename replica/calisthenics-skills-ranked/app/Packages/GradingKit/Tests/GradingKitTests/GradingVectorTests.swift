@@ -52,6 +52,27 @@ final class GradingVectorTests: XCTestCase {
         }
     }
 
+    func testRenamedStageResolves() throws {
+        let json = """
+        {"version":2,"renamed":{"a.99":"a.01"},
+         "regions":[{"id":"r","name":"R","sort":1}],
+         "lines":[{"id":"a","region":"r","name":"A","sort":1,"weight":1,
+                   "stages":[{"name":"S","metric":"reps","target":5,"difficulty":0.5}]}]}
+        """
+        let c = try Catalog.decode(from: Data(json.utf8))
+        let r = Grading.evaluate(catalog: c, logs: [LogEntry(stageID: "a.99", value: 5, at: .now, day: "2026-10-15")],
+                                 claims: [:], now: .now, today: "2026-10-15")
+        XCTAssertEqual(r.highestLogged["a"], 1)
+    }
+
+    func testNonPositiveValuesIgnored() throws {
+        let url = try XCTUnwrap(Bundle.module.url(forResource: "catalog", withExtension: "json"))
+        let c = try Catalog.decode(from: Data(contentsOf: url))
+        let logs = [LogEntry(stageID: "pushup.01", value: 0, at: .now, day: "2026-10-15"),
+                    LogEntry(stageID: "pushup.01", value: -5, at: .now, day: "2026-10-15")]
+        XCTAssertEqual(Grading.evaluate(catalog: c, logs: logs, claims: [:], now: .now, today: "2026-10-15").power, 0)
+    }
+
     func testDayMath() {
         XCTAssertEqual(Day.minus("2026-03-01", 1), "2026-02-28")
         XCTAssertEqual(Day.minus("2024-03-01", 1), "2024-02-29")
