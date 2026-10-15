@@ -44,6 +44,7 @@ create table set_logs (
   stage_id   text not null references stages(id) on delete restrict,
   value      integer not null check (value > 0 and value <= 10000),
   logged_at  integer not null,
+  local_day  text not null,                 -- 'YYYY-MM-DD' in TimeZone.current beim Loggen (Konstanz)
   created_at integer not null,
   updated_at integer not null,
   deleted_at integer                          -- Soft-Delete für Undo und spätere iCloud-Sync

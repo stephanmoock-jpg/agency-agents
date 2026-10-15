@@ -1,0 +1,36 @@
+# XcodeGen: `brew install xcodegen && xcodegen` erzeugt GradeApp.xcodeproj.
+name: GradeApp
+options:
+  bundleIdPrefix: com.example.gradeapp      # ersetzen
+  deploymentTarget: { iOS: "17.0" }
+packages:
+  GradingKit: { path: Packages/GradingKit }
+targets:
+  GradeApp:
+    type: application
+    platform: iOS
+    sources:
+      - App/Sources
+      - path: ../design/swift                # DesignTokens.swift (generiert) + Primitives.swift
+      - path: App/Resources
+        buildPhase: resources
+    dependencies:
+      - package: GradingKit
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.gradeapp
+        INFOPLIST_KEY_CFBundleDisplayName: Arbeitstitel
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        GENERATE_INFOPLIST_FILE: YES
+        TARGETED_DEVICE_FAMILY: "1"
+        SWIFT_VERSION: "5.9"
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "1"
+    scheme:
+      storeKitConfiguration: App/Resources/Products.storekit
+      testTargets: [GradeAppUITests]
+  GradeAppUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [App/UITests]
+    dependencies: [{ target: GradeApp }]

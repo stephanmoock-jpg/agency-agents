@@ -1,0 +1,914 @@
+[
+ {
+  "name": "leer",
+  "logs": [],
+  "claims": {},
+  "now_ts": 1792065600,
+  "now_day": "2026-10-15",
+  "expected": {
+   "overall_grade": 1,
+   "overall_score": 0.0,
+   "power": 0,
+   "region_grades": {
+    "push": 1,
+    "pull": 1,
+    "core": 1,
+    "legs": 1,
+    "shoulders": 1,
+    "grip": 1
+   },
+   "region_scores": {
+    "push": 0.0,
+    "pull": 0.0,
+    "core": 0.0,
+    "legs": 0.0,
+    "shoulders": 0.0,
+    "grip": 0.0
+   },
+   "weakest": "push",
+   "line_grades": {
+    "pushup": 0,
+    "dip": 0,
+    "pullup": 0,
+    "row": 0,
+    "lsit": 0,
+    "legraise": 0,
+    "squat": 0,
+    "hinge": 0,
+    "handstand": 0,
+    "hspu": 0,
+    "hang": 0,
+    "fingers": 0
+   },
+   "highest_logged": {
+    "pushup": 0,
+    "dip": 0,
+    "pullup": 0,
+    "row": 0,
+    "lsit": 0,
+    "legraise": 0,
+    "squat": 0,
+    "hinge": 0,
+    "handstand": 0,
+    "hspu": 0,
+    "hang": 0,
+    "fingers": 0
+   },
+   "cleared_stages": 0
+  },
+  "expected_plan": {
+   "region": "push",
+   "items": [
+    {
+     "stage": "pushup.01",
+     "sets": 3,
+     "target": 20
+    },
+    {
+     "stage": "dip.01",
+     "sets": 3,
+     "target": 15
+    }
+   ]
+  }
+ },
+ {
+  "name": "nur_einstufung",
+  "logs": [],
+  "claims": {
+   "pushup": 4,
+   "pullup": 3,
+   "squat": 2
+  },
+  "now_ts": 1792065600,
+  "now_day": "2026-10-15",
+  "expected": {
+   "overall_grade": 1,
+   "overall_score": 0.028,
+   "power": 0,
+   "region_grades": {
+    "push": 2,
+    "pull": 2,
+    "core": 1,
+    "legs": 1,
+    "shoulders": 1,
+    "grip": 1
+   },
+   "region_scores": {
+    "push": 0.09,
+    "pull": 0.11,
+    "core": 0.0,
+    "legs": 0.04,
+    "shoulders": 0.0,
+    "grip": 0.0
+   },
+   "weakest": "core",
+   "line_grades": {
+    "pushup": 1,
+    "dip": 0,
+    "pullup": 1,
+    "row": 0,
+    "lsit": 0,
+    "legraise": 0,
+    "squat": 0,
+    "hinge": 0,
+    "handstand": 0,
+    "hspu": 0,
+    "hang": 0,
+    "fingers": 0
+   },
+   "highest_logged": {
+    "pushup": 0,
+    "dip": 0,
+    "pullup": 0,
+    "row": 0,
+    "lsit": 0,
+    "legraise": 0,
+    "squat": 0,
+    "hinge": 0,
+    "handstand": 0,
+    "hspu": 0,
+    "hang": 0,
+    "fingers": 0
+   },
+   "cleared_stages": 0
+  },
+  "expected_plan": {
+   "region": "core",
+   "items": [
+    {
+     "stage": "legraise.01",
+     "sets": 3,
+     "target": 15
+    },
+    {
+     "stage": "lsit.01",
+     "sets": 3,
+     "target": 15
+    }
+   ]
+  }
+ },
+ {
+  "name": "ein_satz_knapp_verfehlt",
+  "logs": [
+   {
+    "stage": "pushup.04",
+    "value": 9,
+    "ts": 1792065600,
+    "day": "2026-10-15"
+   }
+  ],
+  "claims": {},
+  "now_ts": 1792065600,
+  "now_day": "2026-10-15",
+  "expected": {
+   "overall_grade": 1,
+   "overall_score": 0.0,
+   "power": 98,
+   "region_grades": {
+    "push": 1,
+    "pull": 1,
+    "core": 1,
+    "legs": 1,
+    "shoulders": 1,
+    "grip": 1
+   },
+   "region_scores": {
+    "push": 0.0,
+    "pull": 0.0,
+    "core": 0.0,
+    "legs": 0.0,
+    "shoulders": 0.0,
+    "grip": 0.0
+   },
+   "weakest": "pull",
+   "line_grades": {
+    "pushup": 0,
+    "dip": 0,
+    "pullup": 0,
+    "row": 0,
+    "lsit": 0,
+    "legraise": 0,
+    "squat": 0,
+    "hinge": 0,
+    "handstand": 0,
+    "hspu": 0,
+    "hang": 0,
+    "fingers": 0
+   },
+   "highest_logged": {
+    "pushup": 0,
+    "dip": 0,
+    "pullup": 0,
+    "row": 0,
+    "lsit": 0,
+    "legraise": 0,
+    "squat": 0,
+    "hinge": 0,
+    "handstand": 0,
+    "hspu": 0,
+    "hang": 0,
+    "fingers": 0
+   },
+   "cleared_stages": 0
+  },
+  "expected_plan": {
+   "region": "pull",
+   "items": [
+    {
+     "stage": "row.01",
+     "sets": 3,
+     "target": 15
+    },
+    {
+     "stage": "pullup.01",
+     "sets": 3,
+     "target": 20
+    }
+   ]
+  }
+ },
+ {
+  "name": "ein_satz_geschafft",
+  "logs": [
+   {
+    "stage": "pushup.04",
+    "value": 10,
+    "ts": 1792065600,
+    "day": "2026-10-15"
+   }
+  ],
+  "claims": {},
+  "now_ts": 1792065600,
+  "now_day": "2026-10-15",
+  "expected": {
+   "overall_grade": 1,
+   "overall_score": 0.0105,
+   "power": 175,
+   "region_grades": {
+    "push": 2,
+    "pull": 1,
+    "core": 1,
+    "legs": 1,
+    "shoulders": 1,
+    "grip": 1
+   },
+   "region_scores": {
+    "push": 0.09,
+    "pull": 0.0,
+    "core": 0.0,
+    "legs": 0.0,
+    "shoulders": 0.0,
+    "grip": 0.0
+   },
+   "weakest": "pull",
+   "line_grades": {
+    "pushup": 1,
+    "dip": 0,
+    "pullup": 0,
+    "row": 0,
+    "lsit": 0,
+    "legraise": 0,
+    "squat": 0,
+    "hinge": 0,
+    "handstand": 0,
+    "hspu": 0,
+    "hang": 0,
+    "fingers": 0
+   },
+   "highest_logged": {
+    "pushup": 4,
+    "dip": 0,
+    "pullup": 0,
+    "row": 0,
+    "lsit": 0,
+    "legraise": 0,
+    "squat": 0,
+    "hinge": 0,
+    "handstand": 0,
+    "hspu": 0,
+    "hang": 0,
+    "fingers": 0
+   },
+   "cleared_stages": 4
+  },
+  "expected_plan": {
+   "region": "pull",
+   "items": [
+    {
+     "stage": "row.01",
+     "sets": 3,
+     "target": 15
+    },
+    {
+     "stage": "pullup.01",
+     "sets": 3,
+     "target": 20
+    }
+   ]
+  }
+ },
+ {
+  "name": "ausgeglichen",
+  "claims": {},
+  "logs": [
+   {
+    "stage": "pushup.04",
+    "value": 99,
+    "ts": 1792065600,
+    "day": "2026-10-15"
+   },
+   {
+    "stage": "dip.04",
+    "value": 99,
+    "ts": 1791979200,
+    "day": "2026-10-14"
+   },
+   {
+    "stage": "pullup.04",
+    "value": 99,
+    "ts": 1791892800,
+    "day": "2026-10-13"
+   },
+   {
+    "stage": "row.03",
+    "value": 99,
+    "ts": 1791806400,
+    "day": "2026-10-12"
+   },
+   {
+    "stage": "lsit.03",
+    "value": 99,
+    "ts": 1791720000,
+    "day": "2026-10-11"
+   },
+   {
+    "stage": "legraise.03",
+    "value": 99,
+    "ts": 1791633600,
+    "day": "2026-10-10"
+   },
+   {
+    "stage": "squat.04",
+    "value": 99,
+    "ts": 1791547200,
+    "day": "2026-10-09"
+   },
+   {
+    "stage": "hinge.03",
+    "value": 99,
+    "ts": 1791460800,
+    "day": "2026-10-08"
+   },
+   {
+    "stage": "handstand.03",
+    "value": 99,
+    "ts": 1791374400,
+    "day": "2026-10-07"
+   },
+   {
+    "stage": "hspu.02",
+    "value": 99,
+    "ts": 1791288000,
+    "day": "2026-10-06"
+   },
+   {
+    "stage": "hang.02",
+    "value": 99,
+    "ts": 1791201600,
+    "day": "2026-10-05"
+   },
+   {
+    "stage": "fingers.02",
+    "value": 99,
+    "ts": 1791115200,
+    "day": "2026-10-04"
+   }
+  ],
+  "now_ts": 1792065600,
+  "now_day": "2026-10-15",
+  "expected": {
+   "overall_grade": 4,
+   "overall_score": 0.212333,
+   "power": 1449,
+   "region_grades": {
+    "push": 4,
+    "pull": 5,
+    "core": 4,
+    "legs": 4,
+    "shoulders": 4,
+    "grip": 3
+   },
+   "region_scores": {
+    "push": 0.24,
+    "pull": 0.3,
+    "core": 0.28,
+    "legs": 0.25,
+    "shoulders": 0.25,
+    "grip": 0.14
+   },
+   "weakest": "grip",
+   "line_grades": {
+    "pushup": 1,
+    "dip": 1,
+    "pullup": 1,
+    "row": 1,
+    "lsit": 1,
+    "legraise": 1,
+    "squat": 1,
+    "hinge": 1,
+    "handstand": 1,
+    "hspu": 1,
+    "hang": 0,
+    "fingers": 1
+   },
+   "highest_logged": {
+    "pushup": 4,
+    "dip": 4,
+    "pullup": 4,
+    "row": 3,
+    "lsit": 3,
+    "legraise": 3,
+    "squat": 4,
+    "hinge": 3,
+    "handstand": 3,
+    "hspu": 2,
+    "hang": 2,
+    "fingers": 2
+   },
+   "cleared_stages": 37
+  },
+  "expected_plan": {
+   "region": "grip",
+   "items": [
+    {
+     "stage": "hang.03",
+     "sets": 3,
+     "target": 10
+    },
+    {
+     "stage": "fingers.03",
+     "sets": 3,
+     "target": 10
+    }
+   ]
+  }
+ },
+ {
+  "name": "einseitig_push",
+  "claims": {},
+  "logs": [
+   {
+    "stage": "pushup.08",
+    "value": 5,
+    "ts": 1792065600,
+    "day": "2026-10-15"
+   },
+   {
+    "stage": "dip.07",
+    "value": 6,
+    "ts": 1792065600,
+    "day": "2026-10-15"
+   },
+   {
+    "stage": "squat.02",
+    "value": 30,
+    "ts": 1792065600,
+    "day": "2026-10-15"
+   }
+  ],
+  "now_ts": 1792065600,
+  "now_day": "2026-10-15",
+  "expected": {
+   "overall_grade": 2,
+   "overall_score": 0.093917,
+   "power": 560,
+   "region_grades": {
+    "push": 8,
+    "pull": 1,
+    "core": 1,
+    "legs": 1,
+    "shoulders": 1,
+    "grip": 1
+   },
+   "region_scores": {
+    "push": 0.765,
+    "pull": 0.0,
+    "core": 0.0,
+    "legs": 0.04,
+    "shoulders": 0.0,
+    "grip": 0.0
+   },
+   "weakest": "pull",
+   "line_grades": {
+    "pushup": 3,
+    "dip": 3,
+    "pullup": 0,
+    "row": 0,
+    "lsit": 0,
+    "legraise": 0,
+    "squat": 0,
+    "hinge": 0,
+    "handstand": 0,
+    "hspu": 0,
+    "hang": 0,
+    "fingers": 0
+   },
+   "highest_logged": {
+    "pushup": 8,
+    "dip": 7,
+    "pullup": 0,
+    "row": 0,
+    "lsit": 0,
+    "legraise": 0,
+    "squat": 2,
+    "hinge": 0,
+    "handstand": 0,
+    "hspu": 0,
+    "hang": 0,
+    "fingers": 0
+   },
+   "cleared_stages": 17
+  },
+  "expected_plan": {
+   "region": "pull",
+   "items": [
+    {
+     "stage": "row.01",
+     "sets": 3,
+     "target": 15
+    },
+    {
+     "stage": "pullup.01",
+     "sets": 3,
+     "target": 20
+    }
+   ]
+  }
+ },
+ {
+  "name": "konstanz_und_volumen",
+  "claims": {},
+  "logs": [
+   {
+    "stage": "squat.02",
+    "value": 30,
+    "ts": 1792065600,
+    "day": "2026-10-15"
+   },
+   {
+    "stage": "squat.02",
+    "value": 30,
+    "ts": 1791979200,
+    "day": "2026-10-14"
+   },
+   {
+    "stage": "squat.02",
+    "value": 30,
+    "ts": 1791892800,
+    "day": "2026-10-13"
+   },
+   {
+    "stage": "squat.02",
+    "value": 30,
+    "ts": 1791806400,
+    "day": "2026-10-12"
+   },
+   {
+    "stage": "squat.02",
+    "value": 30,
+    "ts": 1791720000,
+    "day": "2026-10-11"
+   },
+   {
+    "stage": "squat.02",
+    "value": 30,
+    "ts": 1791633600,
+    "day": "2026-10-10"
+   },
+   {
+    "stage": "squat.02",
+    "value": 30,
+    "ts": 1791547200,
+    "day": "2026-10-09"
+   },
+   {
+    "stage": "squat.02",
+    "value": 30,
+    "ts": 1791460800,
+    "day": "2026-10-08"
+   },
+   {
+    "stage": "squat.02",
+    "value": 30,
+    "ts": 1791374400,
+    "day": "2026-10-07"
+   },
+   {
+    "stage": "squat.02",
+    "value": 30,
+    "ts": 1791288000,
+    "day": "2026-10-06"
+   },
+   {
+    "stage": "squat.02",
+    "value": 30,
+    "ts": 1791201600,
+    "day": "2026-10-05"
+   },
+   {
+    "stage": "squat.02",
+    "value": 30,
+    "ts": 1791115200,
+    "day": "2026-10-04"
+   },
+   {
+    "stage": "squat.02",
+    "value": 30,
+    "ts": 1791028800,
+    "day": "2026-10-03"
+   },
+   {
+    "stage": "squat.02",
+    "value": 30,
+    "ts": 1790942400,
+    "day": "2026-10-02"
+   },
+   {
+    "stage": "squat.02",
+    "value": 30,
+    "ts": 1790856000,
+    "day": "2026-10-01"
+   },
+   {
+    "stage": "squat.02",
+    "value": 30,
+    "ts": 1790769600,
+    "day": "2026-09-30"
+   },
+   {
+    "stage": "squat.02",
+    "value": 30,
+    "ts": 1790683200,
+    "day": "2026-09-29"
+   },
+   {
+    "stage": "squat.02",
+    "value": 30,
+    "ts": 1790596800,
+    "day": "2026-09-28"
+   },
+   {
+    "stage": "squat.02",
+    "value": 30,
+    "ts": 1790510400,
+    "day": "2026-09-27"
+   },
+   {
+    "stage": "squat.02",
+    "value": 30,
+    "ts": 1790424000,
+    "day": "2026-09-26"
+   },
+   {
+    "stage": "pushup.03",
+    "value": 15,
+    "ts": 1788609600,
+    "day": "2026-09-05"
+   }
+  ],
+  "now_ts": 1792065600,
+  "now_day": "2026-10-15",
+  "expected": {
+   "overall_grade": 1,
+   "overall_score": 0.0105,
+   "power": 751,
+   "region_grades": {
+    "push": 2,
+    "pull": 1,
+    "core": 1,
+    "legs": 1,
+    "shoulders": 1,
+    "grip": 1
+   },
+   "region_scores": {
+    "push": 0.05,
+    "pull": 0.0,
+    "core": 0.0,
+    "legs": 0.04,
+    "shoulders": 0.0,
+    "grip": 0.0
+   },
+   "weakest": "pull",
+   "line_grades": {
+    "pushup": 0,
+    "dip": 0,
+    "pullup": 0,
+    "row": 0,
+    "lsit": 0,
+    "legraise": 0,
+    "squat": 0,
+    "hinge": 0,
+    "handstand": 0,
+    "hspu": 0,
+    "hang": 0,
+    "fingers": 0
+   },
+   "highest_logged": {
+    "pushup": 3,
+    "dip": 0,
+    "pullup": 0,
+    "row": 0,
+    "lsit": 0,
+    "legraise": 0,
+    "squat": 2,
+    "hinge": 0,
+    "handstand": 0,
+    "hspu": 0,
+    "hang": 0,
+    "fingers": 0
+   },
+   "cleared_stages": 5
+  },
+  "expected_plan": {
+   "region": "pull",
+   "items": [
+    {
+     "stage": "row.01",
+     "sets": 3,
+     "target": 15
+    },
+    {
+     "stage": "pullup.01",
+     "sets": 3,
+     "target": 20
+    }
+   ]
+  }
+ },
+ {
+  "name": "einstufung_plus_logs",
+  "claims": {
+   "handstand": 5,
+   "pullup": 6
+  },
+  "logs": [
+   {
+    "stage": "pullup.04",
+    "value": 8,
+    "ts": 1791979200,
+    "day": "2026-10-14"
+   },
+   {
+    "stage": "hang.02",
+    "value": 60,
+    "ts": 1791892800,
+    "day": "2026-10-13"
+   }
+  ],
+  "now_ts": 1792065600,
+  "now_day": "2026-10-15",
+  "expected": {
+   "overall_grade": 2,
+   "overall_score": 0.078167,
+   "power": 290,
+   "region_grades": {
+    "push": 1,
+    "pull": 5,
+    "core": 1,
+    "legs": 1,
+    "shoulders": 5,
+    "grip": 2
+   },
+   "region_scores": {
+    "push": 0.0,
+    "pull": 0.32,
+    "core": 0.0,
+    "legs": 0.0,
+    "shoulders": 0.3,
+    "grip": 0.05
+   },
+   "weakest": "push",
+   "line_grades": {
+    "pushup": 0,
+    "dip": 0,
+    "pullup": 2,
+    "row": 0,
+    "lsit": 0,
+    "legraise": 0,
+    "squat": 0,
+    "hinge": 0,
+    "handstand": 2,
+    "hspu": 0,
+    "hang": 0,
+    "fingers": 0
+   },
+   "highest_logged": {
+    "pushup": 0,
+    "dip": 0,
+    "pullup": 4,
+    "row": 0,
+    "lsit": 0,
+    "legraise": 0,
+    "squat": 0,
+    "hinge": 0,
+    "handstand": 0,
+    "hspu": 0,
+    "hang": 2,
+    "fingers": 0
+   },
+   "cleared_stages": 6
+  },
+  "expected_plan": {
+   "region": "push",
+   "items": [
+    {
+     "stage": "pushup.01",
+     "sets": 3,
+     "target": 20
+    },
+    {
+     "stage": "dip.01",
+     "sets": 3,
+     "target": 15
+    }
+   ]
+  }
+ },
+ {
+  "name": "einstufung_ueber_max",
+  "claims": {
+   "hang": 99
+  },
+  "logs": [],
+  "now_ts": 1792065600,
+  "now_day": "2026-10-15",
+  "expected": {
+   "overall_grade": 1,
+   "overall_score": 0.044333,
+   "power": 0,
+   "region_grades": {
+    "push": 1,
+    "pull": 1,
+    "core": 1,
+    "legs": 1,
+    "shoulders": 1,
+    "grip": 5
+   },
+   "region_scores": {
+    "push": 0.0,
+    "pull": 0.0,
+    "core": 0.0,
+    "legs": 0.0,
+    "shoulders": 0.0,
+    "grip": 0.38
+   },
+   "weakest": "push",
+   "line_grades": {
+    "pushup": 0,
+    "dip": 0,
+    "pullup": 0,
+    "row": 0,
+    "lsit": 0,
+    "legraise": 0,
+    "squat": 0,
+    "hinge": 0,
+    "handstand": 0,
+    "hspu": 0,
+    "hang": 3,
+    "fingers": 0
+   },
+   "highest_logged": {
+    "pushup": 0,
+    "dip": 0,
+    "pullup": 0,
+    "row": 0,
+    "lsit": 0,
+    "legraise": 0,
+    "squat": 0,
+    "hinge": 0,
+    "handstand": 0,
+    "hspu": 0,
+    "hang": 0,
+    "fingers": 0
+   },
+   "cleared_stages": 0
+  },
+  "expected_plan": {
+   "region": "push",
+   "items": [
+    {
+     "stage": "pushup.01",
+     "sets": 3,
+     "target": 20
+    },
+    {
+     "stage": "dip.01",
+     "sets": 3,
+     "target": 15
+    }
+   ]
+  }
+ }
+]

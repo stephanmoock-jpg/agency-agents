@@ -1,23 +1,23 @@
 feature,area,priority,original,clone,notes
-Einstufungstest beim Erststart,onboarding,must,yes,no,
-Gesamtgrad in 9 Stufen,ranking,must,yes,no,eigene Gradnamen
-Power Level aus Rang Stufen Konstanz Volumen,ranking,must,yes,no,Formel selbst entwerfen
-Grad je Muskelregion (6),ranking,must,yes,no,
-Schwächste Region hervorheben,ranking,must,yes,no,
-38 Skill-Linien mit Stufenketten,content,must,yes,no,eigene Progressionen
-Satz loggen (Wdh. oder Sekunden),logging,must,yes,no,
-Stufe geschafft und Grad-Aufstieg Feedback,ranking,must,yes,no,
-Lokale Speicherung ohne Account,platform,must,yes,no,SwiftData/Core Data
-Abo weekly/yearly mit Trial,payments,must,yes,no,StoreKit 2
-Käufe wiederherstellen,payments,must,yes,no,
-Grad je Skill-Linie,ranking,should,yes,no,
-Trainingsplan gegen schwächste Region,plan,should,yes,no,
-Rang-Verlauf Chart,tracking,should,yes,no,
-Hold-Timer für statische Stufen,logging,should,unknown,no,inferiert
-Satz bearbeiten/löschen,logging,should,unknown,no,inferiert
-Einheiten und Einstellungen,platform,should,unknown,no,
+Einstufungstest beim Erststart,onboarding,must,yes,partial,"Code geschrieben, nicht kompiliert; S01-S03"
+Gesamtgrad in 9 Stufen,ranking,must,yes,partial,"eigene Gradnamen; Code geschrieben, nicht kompiliert; Logik per Python-Referenz geprüft"
+Power Level aus Rang Stufen Konstanz Volumen,ranking,must,yes,partial,"Formel selbst entwerfen; Code geschrieben, nicht kompiliert; Logik per Python-Referenz geprüft"
+Grad je Muskelregion (6),ranking,must,yes,partial,"Code geschrieben, nicht kompiliert; PRO"
+Schwächste Region hervorheben,ranking,must,yes,partial,"Code geschrieben, nicht kompiliert; Logik geprüft"
+38 Skill-Linien mit Stufenketten,content,must,yes,partial,eigene Progressionen; 12 von 38 Linien (77 Stufen) im Katalog; Rest ist Content-Arbeit
+Satz loggen (Wdh. oder Sekunden),logging,must,yes,partial,"Code geschrieben, nicht kompiliert; S08"
+Stufe geschafft und Grad-Aufstieg Feedback,ranking,must,yes,partial,"Code geschrieben, nicht kompiliert; Toast + LevelUpSheet"
+Lokale Speicherung ohne Account,platform,must,yes,partial,"SwiftData/Core Data; Code geschrieben, nicht kompiliert; SwiftData"
+Abo weekly/yearly mit Trial,payments,must,yes,partial,"StoreKit 2; Code geschrieben, nicht kompiliert; nur StoreKit-Testkonfiguration, App Store Connect fehlt"
+Käufe wiederherstellen,payments,must,yes,partial,"Code geschrieben, nicht kompiliert"
+Grad je Skill-Linie,ranking,should,yes,partial,"Code geschrieben, nicht kompiliert"
+Trainingsplan gegen schwächste Region,plan,should,yes,partial,"Code geschrieben, nicht kompiliert; Planer per Python-Referenz geprüft"
+Rang-Verlauf Chart,tracking,should,yes,partial,"Code geschrieben, nicht kompiliert; Swift Charts"
+Hold-Timer für statische Stufen,logging,should,unknown,partial,"inferiert; Code geschrieben, nicht kompiliert"
+Satz bearbeiten/löschen,logging,should,unknown,partial,"inferiert; Code geschrieben, nicht kompiliert; Swipe + Undo-Toast"
+Einheiten und Einstellungen,platform,should,unknown,partial,"Code geschrieben, nicht kompiliert; keine Einheiten nötig (Wdh./s)"
 iCloud-Sync zwischen Geräten,platform,could,no,no,Differenzierung; Original nur lokal
-Daten-Export CSV,platform,could,unknown,no,
+Daten-Export CSV,platform,could,unknown,partial,"Code geschrieben, nicht kompiliert"
 Widgets mit Grad/Power,platform,could,unknown,no,
 Apple Health Sync,integrations,could,unknown,no,
 Android-Version,platform,could,no,no,Original nur iPhone
