@@ -117,12 +117,12 @@ struct LogSheet: View {
                 }
                 NumberStepper(value: $value, metric: stage.metric == .seconds ? .seconds : .reps)
                 if stage.metric == .seconds { holdTimer }
-                Text(value >= stage.target ? "Erfüllt das Ziel dieser Stufe." : "Unter dem Ziel – zählt trotzdem für Konstanz und Volumen.")
+                Text(value >= stage.target ? "Ziel erreicht – die Stufe wird abgehakt." : "Unter dem Ziel. Zählt trotzdem für Konstanz und Volumen.")
                     .font(DS.Typo.footnote)
                     .foregroundStyle(value >= stage.target ? DS.Palette.success : DS.Palette.textMuted)
                 Spacer()
                 if !AppModel.valueRange.contains(value) {
-                    Text("Bitte einen Wert zwischen 1 und 10 000 eingeben.")
+                    Text("Das geht nicht: bitte 1 bis 10 000.")
                         .font(DS.Typo.footnote).foregroundStyle(DS.Palette.danger)
                 }
                 PrimaryButton(title: editing == nil ? "Speichern" : "Änderung speichern", isLoading: saving) {

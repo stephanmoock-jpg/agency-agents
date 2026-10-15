@@ -5,9 +5,11 @@ extension Stage {
     var criterion: String { metric == .seconds ? "\(target) s halten" : "\(target) Wdh." }
 }
 
-/// Platzhalter-Namen bis replica-brand eigene vergibt.
+/// Eigene Gradnamen (brand.md). Bewusst kein Berg-/Himmel-Thema.
 enum GradeNames {
-    static func overall(_ g: Int) -> String { "Grad \(g)" }
+    static let names = ["Anwärter", "Lehrling", "Geselle", "Altgeselle", "Meister",
+                        "Obermeister", "Großmeister", "Ehrenmeister", "Legende"]
+    static func overall(_ g: Int) -> String { names[max(1, min(9, g)) - 1] }
     static func line(_ g: Int) -> String { g == 0 ? "Noch kein Liniengrad" : "Liniengrad \(["I", "II", "III", "IV"][min(3, g - 1)])" }
 }
 
@@ -99,20 +101,20 @@ struct LevelUpSheet: View {
         VStack(spacing: DS.Space.s5) {
             if let g = outcome.overallGradeUp {
                 GradeBadge(grade: g, size: .lg)
-                Text("Neuer Gesamtgrad: \(GradeNames.overall(g))").font(DS.Typo.title).multilineTextAlignment(.center)
+                Text("Du bist jetzt \(GradeNames.overall(g)).").font(DS.Typo.title).multilineTextAlignment(.center)
             } else if let up = outcome.regionGradeUp {
                 let g = up.1
                 let name = model.catalog.region(up.0)?.name ?? up.0
                 GradeBadge(grade: g, kind: .region(name), size: .lg)
-                Text("\(name) steigt auf Grad \(g)").font(DS.Typo.title).multilineTextAlignment(.center)
+                Text("\(name): jetzt Grad \(g).").font(DS.Typo.title).multilineTextAlignment(.center)
             }
             if let s = outcome.clearedStage {
-                Label("Stufe geschafft: \(s.name)", systemImage: "checkmark.circle.fill")
+                Label("Abgehakt: \(s.name)", systemImage: "checkmark.circle.fill")
                     .font(DS.Typo.headline).foregroundStyle(DS.Palette.success)
             }
             Text("Power \(outcome.powerDelta >= 0 ? "+" : "")\(outcome.powerDelta)")
                 .font(DS.Typo.power).foregroundStyle(DS.Palette.text)
-            PrimaryButton(title: "Weiter") { dismiss() }
+            PrimaryButton(title: "Weiter trainieren") { dismiss() }
         }
         .padding(DS.Layout.gutter)
         .presentationDetents([.medium])

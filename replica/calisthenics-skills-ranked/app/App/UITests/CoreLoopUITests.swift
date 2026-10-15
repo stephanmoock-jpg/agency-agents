@@ -16,7 +16,7 @@ final class CoreLoopUITests: XCTestCase {
         app.buttons["Einstufung starten"].tap()
         for _ in 0..<12 { app.buttons["Nichts davon / weiß nicht"].firstMatch.tap() }
         app.buttons["Weiter"].tap()
-        XCTAssertTrue(app.staticTexts["Grad 1"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Anwärter"].waitForExistence(timeout: 5))
     }
 
     private func audit() throws {
@@ -34,7 +34,7 @@ final class CoreLoopUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Deine Einstufung"].waitForExistence(timeout: 3))
         try audit()
         app.buttons["Weiter"].tap()
-        XCTAssertTrue(app.staticTexts["Grad 1"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Anwärter"].waitForExistence(timeout: 5))
         try audit()
     }
 
@@ -77,10 +77,10 @@ final class CoreLoopUITests: XCTestCase {
         onboard()
         app.buttons.matching(NSPredicate(format: "label ENDSWITH ' loggen'")).firstMatch.tap()
         app.buttons["Speichern"].tap()        // Default = Ziel -> Stufe geschafft
-        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH 'Stufe geschafft'")).firstMatch
+        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH 'Abgehakt'")).firstMatch
             .waitForExistence(timeout: 3))
         try audit()
-        app.buttons["Weiter"].tap()
+        app.buttons["Weiter trainieren"].tap()
     }
 
     #if PERSONAL

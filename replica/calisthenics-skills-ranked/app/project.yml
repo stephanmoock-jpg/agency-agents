@@ -23,7 +23,7 @@ targets:
         DEVELOPMENT_TEAM: ""                               # in Xcode: Signing & Capabilities -> Team
         # PERSONAL: Eigengebrauch, alles frei, keine Paywall/StoreKit. Für App-Store-Build entfernen.
         SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) PERSONAL"
-        INFOPLIST_KEY_CFBundleDisplayName: Arbeitstitel
+        INFOPLIST_KEY_CFBundleDisplayName: Kreide
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         GENERATE_INFOPLIST_FILE: YES
         TARGETED_DEVICE_FAMILY: "1"

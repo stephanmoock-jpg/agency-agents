@@ -13,7 +13,7 @@ Gesteuert über das Compiler-Flag `PERSONAL` in `project.yml`. Für einen späte
 ## Einmalig
 
 ```bash
-cd replica/calisthenics-skills-ranked/app
+cd app     # dieser Ordner
 python3 -I tools/grading_ref.py --check     # Referenz ok?
 python3 -I tools/edge_tests.py
 (cd Packages/GradingKit && swift test)      # Bewertungslogik in Swift ok?

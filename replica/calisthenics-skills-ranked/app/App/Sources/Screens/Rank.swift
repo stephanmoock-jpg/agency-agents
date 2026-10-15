@@ -17,7 +17,7 @@ struct DashboardView: View {
                     GradeBadge(grade: s.overallGrade, size: .md)
                     VStack(alignment: .leading) {
                         Text(GradeNames.overall(s.overallGrade)).font(DS.Typo.title)
-                        Text("von 9").font(DS.Typo.footnote).foregroundStyle(DS.Palette.textMuted)
+                        Text("Grad \(s.overallGrade) von 9").font(DS.Typo.footnote).foregroundStyle(DS.Palette.textMuted)
                     }
                 }
                 PowerMeter(value: s.power, delta: 0, progress: s.progressToNextGrade())
@@ -53,8 +53,8 @@ struct DashboardView: View {
                 }
 
                 if model.activeLogs().isEmpty {
-                    EmptyStateView(symbol: "figure.strengthtraining.functional", title: "Noch kein Satz",
-                                   text: "Logge deinen ersten Satz. Erst echte Sätze bewegen dein Power Level.")
+                    EmptyStateView(symbol: "figure.strengthtraining.functional", title: "Die Tafel ist noch leer",
+                                   text: "Trag deinen ersten Satz ein. Nur echte Sätze bewegen dein Power Level.")
                 }
             }
             .padding(DS.Layout.gutter)

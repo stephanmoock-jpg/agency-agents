@@ -1,0 +1,20 @@
+{
+  "name": "Kreide",
+  "avoid": [
+    "Calisthenics Skills",
+    "Ranked",
+    "Bedrock",
+    "Zenith",
+    "Foothold",
+    "Summit",
+    "Cirrus",
+    "Monica Dede Schmid",
+    "calisthenics-skills-ranked"
+  ],
+  "domains": [
+    "apps.apple.com/us/app/calisthenics-skills-ranked"
+  ],
+  "colors": [],
+  "_colors_note": "Markenfarben des Originals unbekannt (keine Screenshots). Nach Ansicht der Store-Seite eintragen und Sweep erneut laufen lassen.",
+  "_avoid_note": "'Ridge' nicht im Sweep (Substring-Treffer in 'Bridge'); stattdessen Wortgrenzen-Suche: grep -rwi ridge app design/swift"
+}

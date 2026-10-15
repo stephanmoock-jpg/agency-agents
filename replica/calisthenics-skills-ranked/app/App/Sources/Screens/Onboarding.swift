@@ -25,14 +25,14 @@ struct IntroView: View {
             Spacer()
             HStack(spacing: DS.Space.s2) { ForEach([2, 4, 6, 8], id: \.self) { GradeBadge(grade: $0, size: .sm) } }
                 .accessibilityHidden(true)
-            Text("Miss, was du kannst.").font(DS.Typo.large).foregroundStyle(DS.Palette.text)
-            Text("Nicht wie viele Wiederholungen, sondern welche Stufe. Jeder Satz verschiebt deinen Grad – und zeigt, welche Körperregion dich bremst.")
+            Text("Kreide").font(DS.Typo.large).foregroundStyle(DS.Palette.text)
+            Text("Zählt nicht Wiederholungen, sondern Stufen. Jeder saubere Satz zeigt, wo du stehst – und welche Region dich zurückhält.")
                 .font(DS.Typo.body).foregroundStyle(DS.Palette.textMuted)
             Label("Alles bleibt auf deinem iPhone. Kein Konto.", systemImage: "lock.iphone")
                 .font(DS.Typo.footnote).foregroundStyle(DS.Palette.textMuted)
             Spacer()
             PrimaryButton(title: "Einstufung starten", action: onStart)
-            Text("Dauert etwa zwei Minuten.").font(DS.Typo.caption).foregroundStyle(DS.Palette.textMuted)
+            Text("12 Fragen, etwa zwei Minuten.").font(DS.Typo.caption).foregroundStyle(DS.Palette.textMuted)
                 .frame(maxWidth: .infinity)
         }
         .padding(DS.Layout.gutter)
@@ -59,7 +59,7 @@ struct AssessmentView: View {
             ProgressView(value: Double(index + 1), total: Double(lines.count)).tint(DS.Palette.accent)
                 .accessibilityLabel("Frage \(index + 1) von \(lines.count)")
             Text(region.uppercased()).font(DS.Typo.caption).foregroundStyle(DS.Palette.textMuted)
-            Text("\(line.name): Was schaffst du heute sauber?").font(DS.Typo.title).foregroundStyle(DS.Palette.text)
+            Text("\(line.name): Was gelingt dir heute sauber?").font(DS.Typo.title).foregroundStyle(DS.Palette.text)
             ScrollView {
                 VStack(spacing: DS.Space.s2) {
                     option(title: "Nichts davon / weiß nicht", detail: nil, idx: 0)
@@ -120,9 +120,10 @@ struct ResultView: View {
                 GradeBadge(grade: s.overallGrade, size: .lg)
                     .scaleEffect(revealed || reduceMotion ? 1 : 0.6)
                     .opacity(revealed ? 1 : 0)
-                Text("\(GradeNames.overall(s.overallGrade)) von 9").font(DS.Typo.title)
+                Text(GradeNames.overall(s.overallGrade)).font(DS.Typo.title)
+                Text("Grad \(s.overallGrade) von 9").font(DS.Typo.footnote).foregroundStyle(DS.Palette.textMuted)
                 VStack(alignment: .leading, spacing: DS.Space.s2) {
-                    Text("Was dich bremst: \(weakest)").font(DS.Typo.headline)
+                    Text("Hier hängst du hinterher: \(weakest)").font(DS.Typo.headline)
                     Text("Dein Gesamtgrad richtet sich auch nach deiner schwächsten Region. Wer dort aufholt, steigt am schnellsten.")
                         .font(DS.Typo.footnote).foregroundStyle(DS.Palette.textMuted)
                 }
