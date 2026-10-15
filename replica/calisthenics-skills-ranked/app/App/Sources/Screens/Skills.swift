@@ -14,11 +14,11 @@ struct SkillsView: View {
             }
             .pickerStyle(.menu)
             ForEach(model.catalog.regions.filter { filter == "all" || $0.id == filter }) { r in
-                Section(r.name) {
+                Section {
                     ForEach(model.catalog.lines(in: r.id)) { l in
                         NavigationLink(value: l) { LineRow(line: l) }
                     }
-                }
+                } header: { SectionTitle(r.name) }
             }
         }
         .navigationTitle("Skills")
@@ -52,16 +52,18 @@ struct LineDetailView: View {
                         .font(DS.Typo.footnote).foregroundStyle(DS.Palette.textMuted)
                 }
             }
-            Section("Stufen") {
+            Section {
                 StageChain(stages: line.stages.map { s in
                     StageItem(id: s.id, index: s.index, name: s.name, criterion: s.criterion,
                               status: s.index <= current ? .cleared : (s.index == current + 1 ? .current : .locked))
                 }) { item in logStage = model.catalog.stages[item.id] }
-                Menu("Andere Stufe loggen") {
+                Menu {
                     ForEach(line.stages) { s in Button("\(s.index). \(s.name)") { logStage = s } }
+                } label: {
+                    Text("Andere Stufe loggen").font(DS.Typo.body.weight(.semibold)).foregroundStyle(DS.Palette.text)
                 }
-            }
-            Section("Letzte Sätze") {
+            } header: { SectionTitle("Stufen") }
+            Section {
                 let logs = model.logs(for: line.id).prefix(20)
                 if logs.isEmpty {
                     Text("Noch keine Sätze in dieser Linie.").foregroundStyle(DS.Palette.textMuted)
@@ -82,7 +84,7 @@ struct LineDetailView: View {
                         Button("Ändern") { editing = log }
                     }
                 }
-            }
+            } header: { SectionTitle("Letzte Sätze") }
         }
         .navigationTitle(line.name)
         .sheet(item: $logStage) { LogSheet(stage: $0) }
@@ -112,13 +114,13 @@ struct LogSheet: View {
         NavigationStack {
             VStack(spacing: DS.Space.s5) {
                 VStack(spacing: DS.Space.s1) {
-                    Text(stage.name).font(DS.Typo.title).multilineTextAlignment(.center)
+                    Text(stage.name).font(DS.Typo.title).multilineTextAlignment(.center).wrapping()
                     Text("Ziel: \(stage.criterion)").font(DS.Typo.footnote).foregroundStyle(DS.Palette.textMuted)
                 }
                 NumberStepper(value: $value, metric: stage.metric == .seconds ? .seconds : .reps)
                 if stage.metric == .seconds { holdTimer }
                 Text(value >= stage.target ? "Ziel erreicht – die Stufe wird abgehakt." : "Unter dem Ziel. Zählt trotzdem für Konstanz und Volumen.")
-                    .font(DS.Typo.footnote)
+                    .font(DS.Typo.footnote).multilineTextAlignment(.center).wrapping()
                     .foregroundStyle(value >= stage.target ? DS.Palette.success : DS.Palette.textMuted)
                 Spacer()
                 if !AppModel.valueRange.contains(value) {

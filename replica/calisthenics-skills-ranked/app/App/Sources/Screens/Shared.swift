@@ -1,6 +1,18 @@
 import SwiftUI
 import GradingKit
 
+extension View {
+    /// Mehrzeiliger Text, der bei großer Schrift umbricht statt abzuschneiden.
+    func wrapping() -> some View { fixedSize(horizontal: false, vertical: true) }
+}
+
+/// Abschnittsüberschrift mit Token-Farbe (System-Grau unterschreitet den Kontrast auf grauem Grund).
+struct SectionTitle: View {
+    let text: String
+    init(_ text: String) { self.text = text }
+    var body: some View { Text(text).font(DS.Typo.footnote.weight(.semibold)).foregroundStyle(DS.Palette.textMuted) }
+}
+
 extension Stage {
     var criterion: String { metric == .seconds ? "\(target) s halten" : "\(target) Wdh." }
 }
@@ -25,10 +37,10 @@ struct LineRow: View {
             if grade > 0 { GradeBadge(grade: grade, kind: .line, size: .sm) }
             else { Circle().strokeBorder(DS.Palette.borderInput, lineWidth: 1).frame(width: 28, height: 28) }
             VStack(alignment: .leading, spacing: DS.Space.s1) {
-                Text(line.name).font(DS.Typo.headline).foregroundStyle(DS.Palette.text)
+                Text(line.name).font(DS.Typo.headline).foregroundStyle(DS.Palette.text).wrapping()
                 if !compact {
                     Text(idx < line.stages.count ? "Nächste: \(line.stages[idx].name)" : "Alle Stufen geschafft")
-                        .font(DS.Typo.footnote).foregroundStyle(DS.Palette.textMuted).lineLimit(2)
+                        .font(DS.Typo.footnote).foregroundStyle(DS.Palette.textMuted).wrapping()
                 }
                 ProgressView(value: Double(idx), total: Double(line.stages.count)).tint(DS.Palette.accent)
             }
@@ -52,8 +64,8 @@ struct EmptyStateView: View {
         VStack(spacing: DS.Space.s3) {
             Image(systemName: symbol).font(.system(size: 40)).foregroundStyle(DS.Palette.textMuted)
                 .accessibilityHidden(true)
-            Text(title).font(DS.Typo.headline).foregroundStyle(DS.Palette.text).multilineTextAlignment(.center)
-            Text(text).font(DS.Typo.body).foregroundStyle(DS.Palette.textMuted).multilineTextAlignment(.center)
+            Text(title).font(DS.Typo.headline).foregroundStyle(DS.Palette.text).multilineTextAlignment(.center).wrapping()
+            Text(text).font(DS.Typo.body).foregroundStyle(DS.Palette.textMuted).multilineTextAlignment(.center).wrapping()
             if let actionTitle { PrimaryButton(title: actionTitle, action: action).padding(.top, DS.Space.s2) }
         }
         .padding(DS.Space.s6)
@@ -101,16 +113,16 @@ struct LevelUpSheet: View {
         VStack(spacing: DS.Space.s5) {
             if let g = outcome.overallGradeUp {
                 GradeBadge(grade: g, size: .lg)
-                Text("Du bist jetzt \(GradeNames.overall(g)).").font(DS.Typo.title).multilineTextAlignment(.center)
+                Text("Du bist jetzt \(GradeNames.overall(g)).").font(DS.Typo.title).multilineTextAlignment(.center).wrapping()
             } else if let up = outcome.regionGradeUp {
                 let g = up.1
                 let name = model.catalog.region(up.0)?.name ?? up.0
                 GradeBadge(grade: g, kind: .region(name), size: .lg)
-                Text("\(name): jetzt Grad \(g).").font(DS.Typo.title).multilineTextAlignment(.center)
+                Text("\(name): jetzt Grad \(g).").font(DS.Typo.title).multilineTextAlignment(.center).wrapping()
             }
             if let s = outcome.clearedStage {
                 Label("Abgehakt: \(s.name)", systemImage: "checkmark.circle.fill")
-                    .font(DS.Typo.headline).foregroundStyle(DS.Palette.success)
+                    .font(DS.Typo.headline).foregroundStyle(DS.Palette.success).wrapping()
             }
             Text("Power \(outcome.powerDelta >= 0 ? "+" : "")\(outcome.powerDelta)")
                 .font(DS.Typo.power).foregroundStyle(DS.Palette.text)

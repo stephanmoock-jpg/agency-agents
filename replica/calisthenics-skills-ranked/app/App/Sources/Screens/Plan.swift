@@ -27,7 +27,7 @@ struct PlanView: View {
                             .foregroundStyle(DS.Palette.success)
                     }
                 }
-                Section("Übungen") {
+                Section {
                     ForEach(plan.items.sorted { $0.sort < $1.sort }) { item in
                         if let s = model.catalog.stages[model.catalog.resolve(item.stageID)] {
                             HStack(spacing: DS.Space.s3) {
@@ -49,9 +49,9 @@ struct PlanView: View {
                             }
                         }
                     }
-                }
+                } header: { SectionTitle("Übungen") }
                 Section {
-                    Button("Plan neu erstellen") { model.generatePlan() }
+                    Button("Plan neu erstellen") { model.generatePlan() }.foregroundStyle(DS.Palette.text)
                 }
             }
         } else {

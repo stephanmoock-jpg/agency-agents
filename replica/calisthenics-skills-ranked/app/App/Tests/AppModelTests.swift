@@ -7,9 +7,10 @@ import GradingKit
 @MainActor
 final class AppModelTests: XCTestCase {
     var model: AppModel!
+    var container: ModelContainer!     // festhalten: ModelContext hält seinen Container nicht
 
     override func setUp() async throws {
-        let container = try ModelContainer(
+        container = try ModelContainer(
             for: SetLog.self, AssessmentAnswer.self, RankSnapshot.self, Plan.self, PlanItem.self,
             configurations: ModelConfiguration(isStoredInMemoryOnly: true))
         UserDefaults.standard.set(true, forKey: "hasOnboarded")

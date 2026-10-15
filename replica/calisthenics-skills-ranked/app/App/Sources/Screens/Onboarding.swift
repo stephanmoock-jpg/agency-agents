@@ -27,9 +27,9 @@ struct IntroView: View {
                 .accessibilityHidden(true)
             Text("Kreide").font(DS.Typo.large).foregroundStyle(DS.Palette.text)
             Text("Zählt nicht Wiederholungen, sondern Stufen. Jeder saubere Satz zeigt, wo du stehst – und welche Region dich zurückhält.")
-                .font(DS.Typo.body).foregroundStyle(DS.Palette.textMuted)
+                .font(DS.Typo.body).foregroundStyle(DS.Palette.textMuted).wrapping()
             Label("Alles bleibt auf deinem iPhone. Kein Konto.", systemImage: "lock.iphone")
-                .font(DS.Typo.footnote).foregroundStyle(DS.Palette.textMuted)
+                .font(DS.Typo.footnote).foregroundStyle(DS.Palette.textMuted).wrapping()
             Spacer()
             PrimaryButton(title: "Einstufung starten", action: onStart)
             Text("12 Fragen, etwa zwei Minuten.").font(DS.Typo.caption).foregroundStyle(DS.Palette.textMuted)
@@ -57,9 +57,9 @@ struct AssessmentView: View {
         let region = model.catalog.region(line.regionID)?.name ?? ""
         VStack(alignment: .leading, spacing: DS.Space.s4) {
             ProgressView(value: Double(index + 1), total: Double(lines.count)).tint(DS.Palette.accent)
-                .accessibilityLabel("Frage \(index + 1) von \(lines.count)")
-            Text(region.uppercased()).font(DS.Typo.caption).foregroundStyle(DS.Palette.textMuted)
-            Text("\(line.name): Was gelingt dir heute sauber?").font(DS.Typo.title).foregroundStyle(DS.Palette.text)
+                .accessibilityHidden(true)
+            Text("Frage \(index + 1) von \(lines.count) · \(region)").font(DS.Typo.caption).foregroundStyle(DS.Palette.textMuted)
+            Text("\(line.name): Was gelingt dir heute sauber?").font(DS.Typo.title).foregroundStyle(DS.Palette.text).wrapping()
             ScrollView {
                 VStack(spacing: DS.Space.s2) {
                     option(title: "Nichts davon / weiß nicht", detail: nil, idx: 0)
@@ -70,7 +70,7 @@ struct AssessmentView: View {
                 if index > 0 { Button("Zurück") { index -= 1 }.foregroundStyle(DS.Palette.textMuted) }
                 Spacer()
                 Text("Ehrlich bleiben: Der Grad steigt später durch echte Sätze.")
-                    .font(DS.Typo.caption).foregroundStyle(DS.Palette.textMuted)
+                    .font(DS.Typo.caption).foregroundStyle(DS.Palette.textMuted).wrapping()
             }
         }
         .padding(DS.Layout.gutter)
@@ -85,8 +85,8 @@ struct AssessmentView: View {
         } label: {
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(title).font(DS.Typo.body).foregroundStyle(DS.Palette.text)
-                    if let detail { Text(detail).font(DS.Typo.footnote).foregroundStyle(DS.Palette.textMuted) }
+                    Text(title).font(DS.Typo.body).foregroundStyle(DS.Palette.text).wrapping()
+                    if let detail { Text(detail).font(DS.Typo.footnote).foregroundStyle(DS.Palette.textMuted).wrapping() }
                 }
                 Spacer()
                 if selected { Image(systemName: "checkmark").foregroundStyle(DS.Palette.accent) }

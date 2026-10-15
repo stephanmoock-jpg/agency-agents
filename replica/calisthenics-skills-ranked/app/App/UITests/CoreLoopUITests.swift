@@ -48,7 +48,7 @@ final class CoreLoopUITests: XCTestCase {
         app.buttons["Einstufung starten"].tap()
         app.buttons["Nichts davon / weiß nicht"].firstMatch.tap()
         app.buttons["Zurück"].tap()
-        XCTAssertTrue(app.otherElements["Frage 1 von 12"].exists || app.progressIndicators["Frage 1 von 12"].exists)
+        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH 'Frage 1 von 12'")).firstMatch.exists)
     }
 
     // F02-H1 + F02-E2: erster Satz in <= 2 Taps, Doppeltipp erzeugt einen Satz

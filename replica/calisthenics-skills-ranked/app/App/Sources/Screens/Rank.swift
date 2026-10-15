@@ -105,11 +105,11 @@ struct RegionDetailView: View {
                     }
                 }
             }
-            Section("Linien") {
+            Section {
                 ForEach(model.catalog.lines(in: region.id)) { l in
                     NavigationLink(value: l) { LineRow(line: l, compact: true) }
                 }
-            }
+            } header: { SectionTitle("Linien") }
         }
         .navigationTitle(region.name)
     }
