@@ -1,0 +1,11 @@
+{
+  "accepted": [
+    {
+      "source": "vercel-labs/skills@find-skills",
+      "tree_sha256": "b146008599c31057cef1c145774cea5d5afb30e8f43fa802e47a4b461419aaaf",
+      "id": "RP1",
+      "finding": "npx skills",
+      "reason": "SKILL.md documents the unpinned skills CLI (npx skills find/add/update); no MCP server, no bundled code. Every skill the CLI later installs passes this gate again. Reviewed at vercel-labs/skills 13e4063."
+    }
+  ]
+}

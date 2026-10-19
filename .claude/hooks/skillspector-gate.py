@@ -13,6 +13,13 @@ SKILLSPECTOR_GATE_BLOCK_SEVERITY (default LOW, i.e. any finding) exists.
 Anything else, including a source that cannot be resolved or a scan error,
 denies the call and explains why.
 
+`npx skills add <repo> --skill <name>...` and `<repo>@<name>` scan only the
+selected skill directories, not the whole repository.
+
+Reviewed findings can be accepted in skillspector-allow.json next to this
+script. An entry applies only to its source label and only while the scanned
+tree still has the recorded tree_sha256, so any upstream change re-blocks.
+
 Environment
   SKILLSPECTOR_GATE_BLOCK_SEVERITY  LOW | MEDIUM | HIGH | CRITICAL  (default LOW)
   SKILLSPECTOR_GATE_LLM             1 = run the LLM stage (needs SKILLSPECTOR_PROVIDER
@@ -34,6 +41,9 @@ SEVERITY_RANK = {"LOW": 1, "MEDIUM": 2, "HIGH": 3, "CRITICAL": 4}
 SKILL_DIR_RE = re.compile(r"(^|/)(\.claude/(skills|plugins|commands)|\.agents/skills|skills)(/|$)")
 FETCH_CMDS = {"git", "cp", "mv", "rsync", "ln", "unzip", "tar", "curl", "wget", "install"}
 SCAN_TIMEOUT = 540
+ALLOW_FILE = Path(__file__).resolve().parent / "skillspector-allow.json"
+# mirrors SKIP_DIRS of the skills CLI (src/skills.ts)
+SKILL_SKIP_DIRS = {"node_modules", ".git", "dist", "build", "__pycache__"}
 
 
 class GateError(Exception):
@@ -68,7 +78,45 @@ def run_scan(target, label):
         raise GateError(f"SkillSpector-Scan von {label} fehlgeschlagen (exit {proc.returncode}): " + " | ".join(err))
     report["_exit"] = proc.returncode
     report["_mode"] = "statisch + LLM" if llm else "nur statisch (--no-llm)"
+    report["_tree_sha256"] = tree_sha256(target) if Path(str(target)).is_dir() else None
+    apply_allowlist(report, label)
     return report
+
+
+def tree_sha256(root):
+    """Content hash over all files of a skill tree (paths + bytes, .git excluded)."""
+    import hashlib
+    h = hashlib.sha256()
+    root = Path(root)
+    for p in sorted(root.rglob("*")):
+        if ".git" in p.relative_to(root).parts or not p.is_file():
+            continue
+        h.update(p.relative_to(root).as_posix().encode() + b"\0")
+        h.update(p.read_bytes() + b"\0")
+    return h.hexdigest()
+
+
+def apply_allowlist(report, label):
+    """Move findings accepted in ALLOW_FILE from issues to _accepted."""
+    report["_accepted"] = []
+    if not ALLOW_FILE.exists():
+        return
+    try:
+        entries = json.loads(ALLOW_FILE.read_text()).get("accepted", [])
+    except (json.JSONDecodeError, AttributeError):
+        raise GateError(f"{ALLOW_FILE} ist kein gueltiges JSON.")
+    entries = [e for e in entries if e.get("source") == label
+               and e.get("tree_sha256") and e.get("tree_sha256") == report["_tree_sha256"]]
+    if not entries:
+        return
+    kept = []
+    for i in report.get("issues", []):
+        if any(e.get("id") == i.get("id") and e.get("finding") == str(i.get("finding", "")).strip()
+               for e in entries):
+            report["_accepted"].append(i)
+        else:
+            kept.append(i)
+    report["issues"] = kept
 
 
 def evaluate(report):
@@ -109,8 +157,10 @@ def format_findings(report, limit=15):
 
 def summary_line(report, label):
     ra = report.get("risk_assessment", {})
+    accepted = len(report.get("_accepted", []))
     return (f"SkillSpector [{label}]: Score {ra.get('score')}/100, Schweregrad {ra.get('severity')}, "
-            f"Empfehlung {ra.get('recommendation')}, Modus {report['_mode']}")
+            f"Empfehlung {ra.get('recommendation')}, Modus {report['_mode']}"
+            + (f", {accepted} Befund(e) per {ALLOW_FILE.name} akzeptiert" if accepted else ""))
 
 
 # ------------------------------------------------------------- source resolution
@@ -237,6 +287,57 @@ def local_or_remote(src, cwd):
     return p
 
 
+def skill_name(skill_md):
+    m = re.search(r"^---\s*\n(.*?)\n---", skill_md.read_text(errors="replace"), re.S)
+    if m:
+        n = re.search(r"^name:\s*['\"]?([^'\"\n]+?)['\"]?\s*$", m.group(1), re.M)
+        if n:
+            return n.group(1)
+    return skill_md.parent.name
+
+
+def skill_targets(src, skills, cwd):
+    """Scan targets for `skills add <src> --skill <names>`: only the selected skill dirs."""
+    target = local_or_remote(src, cwd)
+    root = target if isinstance(target, Path) else clone(target)
+    if not root.is_dir():
+        raise GateError(f"Quelle {src} ist kein Verzeichnis; --skill nicht pruefbar.")
+    found = {}
+    for md in sorted(root.rglob("SKILL.md")):
+        if SKILL_SKIP_DIRS & set(md.relative_to(root).parts):
+            continue
+        for key in {skill_name(md).lower(), md.parent.name.lower()}:
+            found.setdefault(key, md.parent)
+    targets = []
+    for s in skills:
+        d = found.get(s.lower())
+        if d is None:
+            raise GateError(f"Skill '{s}' in {src} nicht gefunden; Quelle nicht pruefbar.")
+        targets.append((d, f"{src}@{s}"))
+    return targets
+
+
+def parse_skills_add(args):
+    """Split `skills add` args into (sources, skill names), mirroring parseAddOptions of the CLI."""
+    sources, skills, i = [], [], 0
+    while i < len(args):
+        a = args[i]
+        if a in ("-a", "--agent", "-s", "--skill", "--subagent"):
+            i += 1
+            while i < len(args) and not args[i].startswith("-"):
+                if a in ("-s", "--skill"):
+                    skills.append(args[i])
+                i += 1
+            continue
+        if a == "--metadata":
+            i += 2
+            continue
+        if not a.startswith("-"):
+            sources.append(a)
+        i += 1
+    return sources, skills
+
+
 # ------------------------------------------------------------- bash detection
 
 def split_segments(command):
@@ -301,8 +402,12 @@ def detect_bash(command, cwd):
         for i, a in enumerate(seg):
             if a and set(a) <= set("<>&") and ">" in a and i + 1 < len(seg) and SKILL_DIR_RE.search(seg[i + 1]):
                 raise GateError(f"Shell-Umleitung in Skill-/Plugin-Verzeichnis ({seg[i + 1]}) ist nicht pruefbar; Write-Tool verwenden.")
+        # drop operators, their targets and fd numbers (`2>&1` lexes as 2, >&, 1)
+        is_op = lambda t: bool(t) and set(t) <= set("<>&")
         seg = [a for j, a in enumerate(seg)
-               if not (set(a) <= set("<>&")) and not (j > 0 and set(seg[j - 1]) <= set("<>&") and ">" in seg[j - 1] or j > 0 and seg[j - 1] in ("<", "<<", "<<<"))]
+               if not is_op(a)
+               and not (a.isdigit() and j + 1 < len(seg) and is_op(seg[j + 1]))
+               and not (j > 0 and is_op(seg[j - 1]) and ">" in seg[j - 1] or j > 0 and seg[j - 1] in ("<", "<<", "<<<"))]
         if not seg:
             continue
 
@@ -325,11 +430,17 @@ def detect_bash(command, cwd):
         elif base == "skills" and len(seg) > 1 and seg[1] in ("add", "install"):
             m = seg[2:]
         if m is not None:
-            srcs = positional(m)
+            srcs, skills = parse_skills_add(m)
             if not srcs:
                 raise GateError(f"Skill-Install ohne erkennbare Quelle: {joined}")
+            whole = "--all" in m or "*" in skills
             for s in srcs:
-                targets.append((local_or_remote(s, cwd), s))
+                at = re.match(r"^([^/]+/[^/@]+)@(.+)$", s)
+                src, sel = (at.group(1), skills + [at.group(2)]) if at else (s, skills)
+                if sel and not whole:
+                    targets.extend(skill_targets(src, sel, cwd))
+                else:
+                    targets.append((local_or_remote(src, cwd), src))
             continue
 
         # file-fetch commands writing into a skills/plugins dir
