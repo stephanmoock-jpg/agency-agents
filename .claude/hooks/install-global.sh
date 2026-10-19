@@ -9,6 +9,7 @@ dest="$HOME/.claude/hooks"
 mkdir -p "$dest"
 install -m 755 "$src/skillspector-gate.py" "$dest/skillspector-gate.py"
 install -m 755 "$src/install-skillspector.sh" "$dest/install-skillspector.sh"
+if [ -f "$src/skillspector-allow.json" ]; then install -m 644 "$src/skillspector-allow.json" "$dest/skillspector-allow.json"; fi
 
 python3 -I - "$HOME/.claude/settings.json" "$dest" <<'EOF'
 import json, sys
