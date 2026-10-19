@@ -2,7 +2,7 @@
 name: kreide-ios
 on:
   push:
-    branches: [claude/dreamy-goldberg-f1z9jx]
+    branches: [main, claude/dreamy-goldberg-f1z9jx]
     paths:
       - "replica/calisthenics-skills-ranked/**"
       - ".github/workflows/kreide-ios.yml"
@@ -46,6 +46,25 @@ jobs:
             CODE_SIGNING_ALLOWED=NO > build.log 2>&1 || true
           grep -E "error:|warning: .*\.swift|\*\* (TEST )?BUILD" build.log | sort -u | head -80 || true
           grep -q "\*\* TEST BUILD SUCCEEDED \*\*" build.log
+
+      - name: Unsigniertes IPA für iPhone bauen (zum Signieren mit eigener Apple-ID)
+        run: |
+          xcodebuild build -project GradeApp.xcodeproj -scheme GradeApp -configuration Release \
+            -sdk iphoneos -destination "generic/platform=iOS" -derivedDataPath DDR \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" > ipa-build.log 2>&1 || true
+          grep -E "error:|\*\* BUILD" ipa-build.log | sort -u | head -40 || true
+          grep -q "\*\* BUILD SUCCEEDED \*\*" ipa-build.log
+          rm -rf Payload && mkdir Payload
+          cp -R DDR/Build/Products/Release-iphoneos/GradeApp.app Payload/
+          zip -qry Kreide-unsigned.ipa Payload
+          ls -la Kreide-unsigned.ipa
+
+      - name: IPA hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: Kreide-unsigned-ipa
+          path: replica/calisthenics-skills-ranked/app/Kreide-unsigned.ipa
+          retention-days: 30
 
       - name: Unit-Tests (AppModel)
         if: success()
