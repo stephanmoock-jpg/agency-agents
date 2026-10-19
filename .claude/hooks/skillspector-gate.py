@@ -241,7 +241,7 @@ def local_or_remote(src, cwd):
 
 def split_segments(command):
     try:
-        lexer = shlex.shlex(command, posix=True, punctuation_chars=";&|\n")
+        lexer = shlex.shlex(command, posix=True, punctuation_chars=";&|\n<>")
         lexer.whitespace = " \t\r"
         lexer.whitespace_split = True
         tokens = list(lexer)
@@ -297,12 +297,14 @@ def detect_bash(command, cwd):
         joined = " ".join(seg)
 
         # shell redirection into a skills/plugins dir cannot be pre-scanned
+        # (shlex emits unquoted redirect operators as their own tokens)
         for i, a in enumerate(seg):
-            dest = a[a.index(">"):].lstrip(">") if ">" in a else None
-            if dest == "" and i + 1 < len(seg):
-                dest = seg[i + 1]
-            if dest and SKILL_DIR_RE.search(dest):
-                raise GateError(f"Shell-Umleitung in Skill-/Plugin-Verzeichnis ({dest}) ist nicht pruefbar; Write-Tool verwenden.")
+            if a and set(a) <= set("<>&") and ">" in a and i + 1 < len(seg) and SKILL_DIR_RE.search(seg[i + 1]):
+                raise GateError(f"Shell-Umleitung in Skill-/Plugin-Verzeichnis ({seg[i + 1]}) ist nicht pruefbar; Write-Tool verwenden.")
+        seg = [a for j, a in enumerate(seg)
+               if not (set(a) <= set("<>&")) and not (j > 0 and set(seg[j - 1]) <= set("<>&") and ">" in seg[j - 1] or j > 0 and seg[j - 1] in ("<", "<<", "<<<"))]
+        if not seg:
+            continue
 
         # claude plugin install <spec>
         if base == "claude" and len(seg) >= 3 and seg[1] in ("plugin", "plugins") and seg[2] in ("install", "i"):
