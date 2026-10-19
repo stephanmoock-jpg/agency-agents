@@ -132,7 +132,7 @@ Entitlement     product (weekly|yearly), status, trial_ends_at   (StoreKit, nich
 Relationships: Region 1-n SkillLine 1-n Stage 1-n SetLog; SkillLine 1-1 LineProgress; Region 1-1 RegionGrade; Plan n-1 Region.
 
 Formelentwurf (eigen, nicht vom Original):
-`power = w1·overall_grade + w2·Σ cleared_stages + w3·consistency(14d) + w4·log(volume_30d)`; Regionsgrad = Perzentil der höchsten Stufen ihrer Linien; Gesamtgrad = gewichtetes Mittel der Regionsgrade mit Malus für Streuung (bestraft schwächste Region).
+`power = w1·overall_grade + w2·summe(cleared_stages) + w3·consistency(14d) + w4·log(volume_30d)`; Regionsgrad = Perzentil der höchsten Stufen ihrer Linien; Gesamtgrad = gewichtetes Mittel der Regionsgrade mit Malus für Streuung (bestraft schwächste Region).
 
 ## Feature matrix
 

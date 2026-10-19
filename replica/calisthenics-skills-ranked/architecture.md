@@ -59,8 +59,8 @@ overall_grade        : 1..9 per Schwellen auf overall_score (Tabelle in GradingC
 region_grade(r)      : 1..9 mit derselben Tabelle auf region_score
 
 consistency          : Anteil aktiver lokaler Tage in den letzten 14 (0..1)
-volume               : Σ value/target über geloggte Sätze der letzten 30 Tage
-power_level          : round(1000*overall_score + 15*Σcleared_stages + 300*consistency + 120*ln(1+volume))
+volume               : Summe value/target über geloggte Sätze der letzten 30 Tage
+power_level          : round(1000*overall_score + 15*summe(cleared_stages) + 300*consistency + 120*ln(1+volume))
 weakest_region       : argmin region_score; Gleichstand -> weniger Logs in 14 Tagen -> fester sort
 ```
 
