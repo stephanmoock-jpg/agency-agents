@@ -6,6 +6,22 @@
       "id": "RP1",
       "finding": "npx skills",
       "reason": "SKILL.md documents the unpinned skills CLI (npx skills find/add/update); no MCP server, no bundled code. Every skill the CLI later installs passes this gate again. Reviewed at vercel-labs/skills 13e4063."
+    },
+    {
+      "source": "vercel-labs/json-render@react-pdf",
+      "tree_sha256": "72c5c4c8c70c97659fe978518d12e0835ca61c1c9a1a341d14eb1216bc2c2873",
+      "reason_code": "reference_missing",
+      "path": "SKILL.md",
+      "start_line": 69,
+      "reason": "Example output path in renderToFile(spec, \"./output.pdf\"); a file written at runtime, not a bundled artifact. Reviewed at vercel-labs/json-render 372ae4f."
+    },
+    {
+      "source": "vercel-labs/json-render@react-pdf",
+      "tree_sha256": "72c5c4c8c70c97659fe978518d12e0835ca61c1c9a1a341d14eb1216bc2c2873",
+      "reason_code": "reference_missing",
+      "path": "SKILL.md",
+      "start_line": 129,
+      "reason": "repeat.statePath is an API property name, not a file path. Reviewed at vercel-labs/json-render 372ae4f."
     }
   ]
 }
