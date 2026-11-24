@@ -1,11 +1,18 @@
 {
-  "version": 1,
+  "version": 2,
   "skills": {
     "find-skills": {
       "source": "vercel-labs/skills",
       "sourceType": "github",
       "skillPath": "skills/find-skills/SKILL.md",
-      "computedHash": "913b9d37d0d54047dd65222bb8c67b2bf04e3cb87dcad1729068d7a8b2c8c396"
+      "computedHash": ""
+    },
+    "react-pdf": {
+      "source": "vercel-labs/json-render",
+      "commit": "372ae4f487d02bd2f591e94a84527de40f3938df",
+      "sourceType": "github",
+      "skillPath": "skills/react-pdf/SKILL.md",
+      "computedHash": "f11ec364d350f72f6f5396d984367f039bd3c810152872d34306afec4554315a"
     }
   }
 }

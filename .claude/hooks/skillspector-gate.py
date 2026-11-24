@@ -16,8 +16,9 @@ denies the call and explains why.
 `npx skills add <repo> --skill <name>...` and `<repo>@<name>` scan only the
 selected skill directories, not the whole repository.
 
-Reviewed findings can be accepted in skillspector-allow.json next to this
-script. An entry applies only to its source label and only while the scanned
+Reviewed findings and analysis exceptions (e.g. reference_missing) can be
+accepted in skillspector-allow.json next to this script. A CAUTION verdict
+passes only when every gap was such an accepted exception and no finding is left. An entry applies only to its source label and only while the scanned
 tree still has the recorded tree_sha256, so any upstream change re-blocks.
 
 Environment
@@ -97,8 +98,12 @@ def tree_sha256(root):
 
 
 def apply_allowlist(report, label):
-    """Move findings accepted in ALLOW_FILE from issues to _accepted."""
+    """Move findings and analysis exceptions accepted in ALLOW_FILE to _accepted / _accepted_exceptions.
+
+    A finding entry names id + finding; an exception entry names reason_code + path + start_line.
+    """
     report["_accepted"] = []
+    report["_accepted_exceptions"] = []
     if not ALLOW_FILE.exists():
         return
     try:
@@ -117,6 +122,27 @@ def apply_allowlist(report, label):
         else:
             kept.append(i)
     report["issues"] = kept
+    comp = report.get("analysis_completeness") or {}
+    kept = []
+    for x in comp.get("ledger_exceptions") or []:
+        if not x.get("fatal") and any(
+                e.get("reason_code") and e.get("reason_code") == x.get("reason_code")
+                and e.get("path") == x.get("path") and e.get("start_line") == x.get("start_line")
+                for e in entries):
+            report["_accepted_exceptions"].append(x)
+        else:
+            kept.append(x)
+    if comp:
+        comp["ledger_exceptions"] = kept
+
+
+def exceptions_cleared(report):
+    """Incomplete analysis counts as complete only when every gap was an accepted exception."""
+    comp = report.get("analysis_completeness") or {}
+    analyzers_ok = all(not a.get("failed") and not a.get("unaccounted")
+                       for a in comp.get("analyzer_statuses") or [])
+    return (bool(report.get("_accepted_exceptions")) and not comp.get("ledger_exceptions")
+            and comp.get("coverage_percent") == 100.0 and analyzers_ok)
 
 
 def evaluate(report):
@@ -127,9 +153,12 @@ def evaluate(report):
     reasons = []
     if report["_exit"] == 2 or not report.get("execution_successful", False):
         reasons.append("Scan nicht erfolgreich ausgefuehrt")
-    if ra.get("recommendation") != "SAFE":
+    cleared = exceptions_cleared(report)
+    # CAUTION that stems only from accepted exceptions, with no finding left, is not a blocker
+    if ra.get("recommendation") != "SAFE" and not (
+            cleared and ra.get("recommendation") == "CAUTION" and not report.get("issues")):
         reasons.append(f"Empfehlung {ra.get('recommendation')}")
-    if not comp.get("is_complete", False):
+    if not comp.get("is_complete", False) and not cleared:
         exc = comp.get("ledger_exceptions") or []
         detail = "; ".join(f"{e.get('path')}: {e.get('reason_code')}" for e in exc[:5])
         reasons.append(f"Analyse unvollstaendig ({comp.get('coverage_percent')}% Abdeckung{', ' + detail if detail else ''})")
@@ -157,7 +186,7 @@ def format_findings(report, limit=15):
 
 def summary_line(report, label):
     ra = report.get("risk_assessment", {})
-    accepted = len(report.get("_accepted", []))
+    accepted = len(report.get("_accepted", [])) + len(report.get("_accepted_exceptions", []))
     return (f"SkillSpector [{label}]: Score {ra.get('score')}/100, Schweregrad {ra.get('severity')}, "
             f"Empfehlung {ra.get('recommendation')}, Modus {report['_mode']}"
             + (f", {accepted} Befund(e) per {ALLOW_FILE.name} akzeptiert" if accepted else ""))
